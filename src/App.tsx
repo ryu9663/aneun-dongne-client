@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Main from './pages/main';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 className={'section_title_hidden'}>아는동네</h1>
+      {/* <Header handleResponseSuccess={handleResponseSuccess} /> */}
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+      {/* <Route exact path="/home" component={Home} />
+        <Route path="/mypage" component={MyPage} />
+        <Route exact path="/detailpage/:id" component={DetailPage} />
+        <Route path="/user/kakao/callback" component={KakaoRedirectHandler} /> */}
+    </>
   );
 }
 
