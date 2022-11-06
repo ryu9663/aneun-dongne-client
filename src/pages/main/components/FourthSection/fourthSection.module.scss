@@ -1,0 +1,36 @@
+.fourth_section {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: #505f7b;
+  color: white;
+  padding: 30px 0;
+
+  &_title {
+    font-size: 52px;
+    font-weight: bold;
+  }
+
+  &_button {
+    font-size: 26px;
+    color: white;
+    width: 180px;
+    height: 70px;
+    border-style: none;
+
+    transition: all 0.3s;
+    border: 2px solid rgb(194, 194, 194);
+    border-radius: 5px;
+
+    background-color: transparent;
+
+    &:hover {
+      background-color: #ffffff7a;
+
+      transition: all 0.3s;
+    }
+  }
+}

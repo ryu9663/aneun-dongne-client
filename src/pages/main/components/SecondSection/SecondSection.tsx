@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react';
 import styles from './secondSection.module.scss';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const SecondSection = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 2000
-    });
-  }, []);
   return (
-    <div className={styles.second_section} data-aos="fade-up">
+    <section className={styles.second_section} data-aos="fade-up">
       <h3 data-aos="fade-right" className={styles.second_section_title}>
         우리 동네에서 인기있는 관광지는?
       </h3>
@@ -19,7 +11,7 @@ const SecondSection = () => {
 
         <img className={styles.popular_place} alt="아는동네 서비스 gif" src="/images/landing.gif" />
       </div>
-    </div>
+    </section>
   );
 };
 
