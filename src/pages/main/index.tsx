@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import styles from './main.module.scss';
 import FirstSection from './components/FirstSection/FirstSection';
 import SecondSection from './components/SecondSection/SecondSection';
 import AOS from 'aos';
@@ -14,7 +15,7 @@ const Main = () => {
   }, []);
 
   return (
-    <main>
+    <main className={styles.main}>
       <h2 className="section_title_hidden">아는동네</h2>
       <FirstSection />
       <SecondSection />

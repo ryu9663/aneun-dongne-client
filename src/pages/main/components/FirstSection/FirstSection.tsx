@@ -5,7 +5,7 @@ import { arrow_down } from 'react-icons-kit/ikons/arrow_down';
 const FirstSection = () => {
   const ToScrollBottom = () => {
     window.scroll({
-      top: window.innerHeight * 2,
+      top: window.innerHeight,
       behavior: 'smooth'
     });
   };
