@@ -15,13 +15,13 @@ const Main = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <h2 className="section_title_hidden">아는동네</h2>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
       <FourthSection />
-    </main>
+    </div>
   );
 };
 
