@@ -1,5 +1,9 @@
 // declaration.d.ts
-declare module '*.scss' {
-  const content: Record<string, string>;
-  export default content;
+
+export declare global {
+  interface Window {
+    kakao: {
+      maps: any;
+    };
+  }
 }
