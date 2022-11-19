@@ -1,13 +1,14 @@
-import { infoWindowGenerator } from 'utils/InfoWindowGenerator';
-import { OtherMarkersType } from './KakaoMap';
+import { infoWindowGenerator, photoWindowGenerator } from 'utils/InfoWindowGenerator';
+
+import { PlaceType } from 'pages/mappage/types';
 
 const kakao = window.kakao;
 
 export const openInfoWindow = (map: any, marker: any) => {
-  const infoWindow = new kakao.maps.InfoWindow({
+  const infowindow = new kakao.maps.InfoWindow({
     content: infoWindowGenerator('내위치')
   });
-  infoWindow.open(map, marker);
+  infowindow.open(map, marker);
 };
 
 export const addZoomControler = (map: any) => {
@@ -15,22 +16,33 @@ export const addZoomControler = (map: any) => {
   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 };
 
-export const setOtherMarkers = (map: any, otherMarkers: OtherMarkersType[]) => {
+export const setOtherMarkers = (map: any, places: PlaceType[]) => {
   const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
   try {
-    otherMarkers
-      .map(({ title, lat, lon }) => ({
-        title,
-        latlng: new kakao.maps.LatLng(lat, lon)
+    places
+      .map(({ title, mapy, mapx, firstimage }) => ({
+        hoverBox: photoWindowGenerator(title, firstimage),
+        latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
+        title
       }))
 
-      .forEach(otherMarker => {
-        new kakao.maps.Marker({
+      .forEach(place => {
+        const infowindow = new kakao.maps.InfoWindow({
+          content: place.hoverBox
+        });
+
+        const marker = new kakao.maps.Marker({
           map,
-          position: otherMarker.latlng,
-          title: otherMarker.title,
+          position: place.latlng,
+          title: place.hoverBox,
           image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
         });
+
+        kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
+        kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
+        kakao.maps.event.addListener(marker, 'click', () =>
+          window.open(`https://www.google.com/search?q=${place.title}`)
+        );
       });
   } catch (err) {
     console.log(err);

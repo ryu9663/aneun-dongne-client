@@ -3,17 +3,16 @@ import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
 
 import { addZoomControler, openInfoWindow, setOtherMarkers } from './handler';
+import { PlaceType } from 'pages/mappage/types';
 
 export interface Props {
   position?: PositionType;
   level?: number;
-  otherMarkers?: OtherMarkersType[];
-}
-export interface OtherMarkersType extends PositionType {
-  title: string;
+
+  places?: PlaceType[];
 }
 
-const KakaoMap = ({ position, otherMarkers }: Props) => {
+const KakaoMap = ({ position, places }: Props) => {
   const mapRef = useRef(null);
   const kakao = window.kakao;
 
@@ -34,10 +33,9 @@ const KakaoMap = ({ position, otherMarkers }: Props) => {
       marker.setMap(map);
       addZoomControler(map);
       openInfoWindow(map, marker);
-
-      if (otherMarkers) setOtherMarkers(map, otherMarkers);
+      places && setOtherMarkers(map, places);
     }
-  }, [position, otherMarkers]);
+  }, [position, places]);
 
   return <article ref={mapRef} className={styles.map} id={styles.map}></article>;
 };
