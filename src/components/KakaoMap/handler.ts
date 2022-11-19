@@ -39,7 +39,7 @@ export const setOtherMarkers = (map: any, places: PlaceType[]) => {
           title: place.hoverBox,
           image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
         });
-        console.log('kkk');
+
         kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
         kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
         kakao.maps.event.addListener(marker, 'click', () =>
