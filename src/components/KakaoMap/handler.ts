@@ -39,7 +39,7 @@ export const setOtherMarkers = (map: any, places: PlaceType[]) => {
           title: place.hoverBox,
           image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
         });
-        console.log('kkk');
+
         kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
         kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
         kakao.maps.event.addListener(marker, 'click', () =>
@@ -51,10 +51,11 @@ export const setOtherMarkers = (map: any, places: PlaceType[]) => {
   }
 };
 
+// onClick은 쓰이진 않지만 우선 남겨둠
 export const onKakaoMapClick = (map: any, setPickPoint: (position?: PositionType) => void) => {
   kakao.maps.event.addListener(map, 'click', (e: { latLng: any }) => {
     const latlng = { lat: e.latLng.Ma, lon: e.latLng.La };
-    console.log(latlng);
+
     setPickPoint(latlng);
   });
 };
@@ -63,7 +64,6 @@ export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => v
   kakao.maps.event.addListener(map, 'dragend', () => {
     const latlng = map.getCenter();
 
-    console.log({ lat: latlng.Ma, lon: latlng.La });
     setPickPoint({ lat: latlng.Ma, lon: latlng.La });
   });
 };
