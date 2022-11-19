@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
 
