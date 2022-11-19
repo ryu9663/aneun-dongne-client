@@ -22,7 +22,10 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
     if (currentPosition) {
       const container = mapRef.current;
       const option = {
-        center: new kakao.maps.LatLng(currentPosition.lat, currentPosition.lon),
+        center: new kakao.maps.LatLng(
+          pickPoint ? pickPoint.lat : currentPosition?.lat,
+          pickPoint ? pickPoint.lon : currentPosition?.lon
+        ),
         level: 8
       };
       const kakaoMap = new kakao.maps.Map(container, option);
