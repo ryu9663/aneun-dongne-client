@@ -27,6 +27,7 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
       };
       const kakaoMap = new kakao.maps.Map(container, option);
 
+
       setMap(kakaoMap);
     }
   }, [mapRef]);
@@ -38,6 +39,7 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
     }
     if (places) setOtherMarkers(map, places);
   }, [map]);
+
 
   return (
     <>
