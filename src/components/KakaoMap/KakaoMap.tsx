@@ -1,21 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
 
 import { addZoomControler, onDragMap, setOtherMarkers } from './handler';
 import { PlaceType } from 'pages/mappage/types';
+import { useQuery } from '@tanstack/react-query';
+import queryKeys from 'query/queryKeys';
+import { getPlaces } from 'query/queryFn';
 
 export interface Props {
   currentPosition?: PositionType;
-  level?: number;
+
   places?: PlaceType[];
   pickPoint?: PositionType;
   setPickPoint: (position?: PositionType) => void;
 }
 
-const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: Props) => {
-  const [map, setMap] = useState(null);
+// const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint}: Props) => {
+const KakaoMap = ({ currentPosition, pickPoint, setPickPoint }: Props) => {
   const mapRef = useRef(null);
+  const kakaoMap = useRef();
   const kakao = window.kakao;
 
   useEffect(() => {
@@ -28,19 +32,34 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
         ),
         level: 8
       };
-      const kakaoMap = new kakao.maps.Map(container, option);
-
-      setMap(kakaoMap);
+      kakaoMap.current = new kakao.maps.Map(container, option);
+      addZoomControler(kakaoMap.current);
+      setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
     }
   }, [mapRef]);
 
+  //! TODO : 쿼리를 포함하는 useMap 훅을 하나 만들어야함
+  const placeParmas = useMemo(
+    () => ({
+      numOfRows: 50,
+      mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
+      mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
+      radius: 10000
+    }),
+    [pickPoint]
+  );
+
+  const { data: placesData } = useQuery({
+    queryKey: [queryKeys.PLACES(placeParmas)],
+    queryFn: () => getPlaces(placeParmas)
+  });
+
+  const places = placesData?.response?.body?.items.item;
+  //!
+
   useEffect(() => {
-    if (map) {
-      addZoomControler(map);
-      setPickPoint && onDragMap(map, setPickPoint);
-    }
-    if (places) setOtherMarkers(map, places);
-  }, [map]);
+    if (places) setOtherMarkers(kakaoMap.current, places);
+  }, [places]);
 
   return (
     <>
