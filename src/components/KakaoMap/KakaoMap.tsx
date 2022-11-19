@@ -1,30 +1,23 @@
 import { useEffect, useRef } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
-import { infoWindowGenerator } from 'utils/InfoWindowGenerator';
 
-interface Props {
+import { addZoomControler, openInfoWindow, setOtherMarkers } from './handler';
+
+export interface Props {
   position?: PositionType;
   level?: number;
+  otherMarkers?: OtherMarkersType[];
 }
-const KakaoMap = ({ position }: Props) => {
+export interface OtherMarkersType extends PositionType {
+  title: string;
+}
+
+const KakaoMap = ({ position, otherMarkers }: Props) => {
   const mapRef = useRef(null);
   const kakao = window.kakao;
-  console.log(kakao);
-  const openInfoWindow = (map: any, marker: any) => {
-    const infoWindow = new kakao.maps.InfoWindow({
-      content: infoWindowGenerator('내위치')
-    });
-    infoWindow.open(map, marker);
-  };
-
-  const addZoomControler = (map: any) => {
-    const zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-  };
 
   useEffect(() => {
-    console.log(kakao);
     if (position && kakao) {
       const container = mapRef.current;
 
@@ -33,15 +26,18 @@ const KakaoMap = ({ position }: Props) => {
       });
       const options = {
         center: new kakao.maps.LatLng(position.lat, position.lon),
-        level: 3,
+        level: 8,
         marker
       };
+
       const map = new kakao.maps.Map(container, options);
       marker.setMap(map);
       addZoomControler(map);
       openInfoWindow(map, marker);
+
+      if (otherMarkers) setOtherMarkers(map, otherMarkers);
     }
-  }, [position]);
+  }, [position, otherMarkers]);
 
   return <article ref={mapRef} className={styles.map} id={styles.map}></article>;
 };
