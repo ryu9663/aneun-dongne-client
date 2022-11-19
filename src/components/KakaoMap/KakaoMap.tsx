@@ -1,43 +1,52 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
 
-import { addZoomControler, openInfoWindow, setOtherMarkers } from './handler';
+import { addZoomControler, onDragMap, setOtherMarkers } from './handler';
 import { PlaceType } from 'pages/mappage/types';
 
 export interface Props {
-  position?: PositionType;
+  currentPosition?: PositionType;
   level?: number;
-
   places?: PlaceType[];
+  pickPoint?: PositionType;
+  setPickPoint: (position?: PositionType) => void;
 }
 
-const KakaoMap = ({ position, places }: Props) => {
+const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: Props) => {
+  const [map, setMap] = useState(null);
   const mapRef = useRef(null);
   const kakao = window.kakao;
 
   useEffect(() => {
-    if (position && kakao) {
+    if (currentPosition) {
       const container = mapRef.current;
-
-      const marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(position.lat, position.lon)
-      });
-      const options = {
-        center: new kakao.maps.LatLng(position.lat, position.lon),
-        level: 8,
-        marker
+      const option = {
+        center: new kakao.maps.LatLng(currentPosition.lat, currentPosition.lon),
+        level: 8
       };
+      const kakaoMap = new kakao.maps.Map(container, option);
 
-      const map = new kakao.maps.Map(container, options);
-      marker.setMap(map);
-      addZoomControler(map);
-      openInfoWindow(map, marker);
-      places && setOtherMarkers(map, places);
+      setMap(kakaoMap);
     }
-  }, [position, places]);
+  }, [mapRef]);
 
-  return <article ref={mapRef} className={styles.map} id={styles.map}></article>;
+  useEffect(() => {
+    if (map) {
+      addZoomControler(map);
+      setPickPoint && onDragMap(map, setPickPoint);
+    }
+  }, [map]);
+
+  useEffect(() => {
+    if (places) setOtherMarkers(map, places);
+  }, [places]);
+  return (
+    <>
+      <div className="map-experiment">&nbsp;&nbsp;{'마커를 클릭하시면 해당 문화재 검색창으로 이동합니다.'}</div>
+      <article ref={mapRef} className={styles.map} id={styles.map}></article>
+    </>
+  );
 };
 
 export default KakaoMap;
