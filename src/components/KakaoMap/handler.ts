@@ -15,7 +15,6 @@ export const openInfoWindow = (map: any, marker: any) => {
 export const addZoomControler = (map: any) => {
   const zoomControl = new kakao.maps.ZoomControl();
   map.addControl(zoomControl);
-  // kakao.maps.event.addListener(map, 'zoom_changed', () => {});
 };
 
 export const setOtherMarkers = (map: any, places: PlaceType[]) => {
