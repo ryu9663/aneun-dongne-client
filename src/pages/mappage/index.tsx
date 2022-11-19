@@ -15,32 +15,32 @@ const MapPage = () => {
   const { loading: currentPositionLoading, position } = useCurrentPosition();
   const [pickPoint, setPickPoint] = useState<PositionType>();
 
-  const placeParmas = useMemo(
-    () => ({
-      numOfRows: 50,
-      mapX: pickPoint ? pickPoint.lon : position?.lon,
-      mapY: pickPoint ? pickPoint.lat : position?.lat,
-      radius: 10000
-    }),
-    [currentPositionLoading, pickPoint]
-  );
+  // const placeParmas = useMemo(
+  //   () => ({
+  //     numOfRows: 50,
+  //     mapX: pickPoint ? pickPoint.lon : position?.lon,
+  //     mapY: pickPoint ? pickPoint.lat : position?.lat,
+  //     radius: 10000
+  //   }),
+  //   [currentPositionLoading, pickPoint]
+  // );
 
-  const { data: placesData, isLoading } = useQuery({
-    queryKey: [queryKeys.PLACES(placeParmas)],
-    queryFn: () => getPlaces(placeParmas)
-  });
+  // const { data: placesData, isLoading } = useQuery({
+  //   queryKey: [queryKeys.PLACES(placeParmas)],
+  //   queryFn: () => getPlaces(placeParmas)
+  // });
 
-  const places = placesData?.response?.body?.items.item;
+  // const places = placesData?.response?.body?.items.item;
 
   return (
     <section className={styles.wrapper}>
-      {isLoading || currentPositionLoading ? (
+      {/* {isLoading || currentPositionLoading ? ( */}
+      {currentPositionLoading ? (
         <div>loading...</div>
       ) : (
         <KakaoMap
-          level={1}
           currentPosition={position}
-          places={places}
+          // places={places}
           pickPoint={pickPoint}
           setPickPoint={setPickPoint}
         />
