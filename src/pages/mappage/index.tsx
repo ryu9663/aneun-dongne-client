@@ -29,18 +29,12 @@ const MapPage = () => {
     queryKey: [queryKeys.PLACES(placeParmas)],
     queryFn: () => getPlaces(placeParmas)
   });
-  console.log(placesData?.response?.body?.items.item);
 
-  const getPlacesMarkerInfo = (places?: PlaceType[]) =>
-    places?.map(({ addr1, mapx, mapy }) => ({ title: addr1, lat: parseFloat(mapy), lon: parseFloat(mapx) }));
-  const otherMarkers = getPlacesMarkerInfo(placesData?.response?.body?.items.item);
+  const places = placesData?.response?.body?.items.item;
+
   return (
     <section className={styles.wrapper}>
-      {isLoading || currentPositionLoading ? (
-        <div>loading...</div>
-      ) : (
-        <KakaoMap position={position} otherMarkers={otherMarkers} />
-      )}
+      {isLoading || currentPositionLoading ? <div>loading...</div> : <KakaoMap position={position} places={places} />}
     </section>
   );
 };
