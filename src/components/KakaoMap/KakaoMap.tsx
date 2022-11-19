@@ -22,7 +22,10 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
     if (currentPosition) {
       const container = mapRef.current;
       const option = {
-        center: new kakao.maps.LatLng(currentPosition.lat, currentPosition.lon),
+        center: new kakao.maps.LatLng(
+          pickPoint ? pickPoint.lat : currentPosition?.lat,
+          pickPoint ? pickPoint.lon : currentPosition?.lon
+        ),
         level: 8
       };
       const kakaoMap = new kakao.maps.Map(container, option);
@@ -36,11 +39,9 @@ const KakaoMap = ({ currentPosition, places, pickPoint, setPickPoint, level }: P
       addZoomControler(map);
       setPickPoint && onDragMap(map, setPickPoint);
     }
+    if (places) setOtherMarkers(map, places);
   }, [map]);
 
-  useEffect(() => {
-    if (places) setOtherMarkers(map, places);
-  }, [places]);
   return (
     <>
       <div className="map-experiment">&nbsp;&nbsp;{'마커를 클릭하시면 해당 문화재 검색창으로 이동합니다.'}</div>
