@@ -4,8 +4,7 @@ import styles from './mappage.module.scss';
 import { useQuery } from '@tanstack/react-query';
 import { getPlaces } from 'query/queryFn';
 import queryKeys from '../../query/queryKeys';
-import { useMemo } from 'react';
-import { PlaceType } from './types';
+import { useMemo, useState } from 'react';
 
 export interface PositionType {
   lat: number;
@@ -14,15 +13,16 @@ export interface PositionType {
 
 const MapPage = () => {
   const { loading: currentPositionLoading, position } = useCurrentPosition();
+  const [pickPoint, setPickPoint] = useState<PositionType>();
 
   const placeParmas = useMemo(
     () => ({
       numOfRows: 50,
-      mapX: position?.lon,
-      mapY: position?.lat,
+      mapX: pickPoint ? pickPoint.lon : position?.lon,
+      mapY: pickPoint ? pickPoint.lat : position?.lat,
       radius: 10000
     }),
-    [currentPositionLoading]
+    [currentPositionLoading, pickPoint]
   );
 
   const { data: placesData, isLoading } = useQuery({
@@ -34,7 +34,18 @@ const MapPage = () => {
 
   return (
     <section className={styles.wrapper}>
-      {isLoading || currentPositionLoading ? <div>loading...</div> : <KakaoMap position={position} places={places} />}
+      {isLoading || currentPositionLoading ? (
+        <div>loading...</div>
+      ) : (
+        <KakaoMap
+          level={1}
+          currentPosition={position}
+          places={places}
+          pickPoint={pickPoint}
+          setPickPoint={setPickPoint}
+        />
+      )}
+      <div>지도 아래 부분에 관광지 목록들이 뜨드록 업데이트 예정</div>
     </section>
   );
 };
