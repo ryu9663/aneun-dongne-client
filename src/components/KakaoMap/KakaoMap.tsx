@@ -30,14 +30,14 @@ const KakaoMap = ({ currentPosition, pickPoint, setPickPoint }: Props) => {
     [pickPoint]
   );
 
-  const { data: placesData } = useQuery({
+  const { data: placesData, isLoading } = useQuery({
     queryKey: [queryKeys.PLACES(placeParmas)],
     queryFn: () => getPlaces(placeParmas)
   });
 
   const places = placesData?.response?.body?.items.item;
   //!
-  const { map: kakaoMap } = useMap(mapRef, places);
+  const { map: kakaoMap } = useMap(mapRef, places, currentPosition);
 
   useEffect(() => {
     if (kakaoMap.current) setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
@@ -46,6 +46,7 @@ const KakaoMap = ({ currentPosition, pickPoint, setPickPoint }: Props) => {
   return (
     <>
       <>
+        {isLoading && <span>주변 관광지들을 탐색중입니다.</span>}
         <div className="map-experiment">&nbsp;&nbsp;{'마커를 클릭하시면 해당 문화재 검색창으로 이동합니다.'}</div>
         <article ref={mapRef} className={styles.map} id={styles.map}></article>
       </>
