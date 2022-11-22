@@ -15,7 +15,7 @@ const MapPage = () => {
   return (
     <section className={styles.wrapper}>
       {currentPositionLoading ? (
-        <div>loading...</div>
+        <div>현재 위치를 불러오는 중입니다.</div>
       ) : (
         <KakaoMap currentPosition={position} pickPoint={pickPoint} setPickPoint={setPickPoint} />
       )}
