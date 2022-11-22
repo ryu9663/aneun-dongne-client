@@ -7,14 +7,15 @@ import Main from './pages/main';
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
         <h1 className="section_title_hidden">아는동네</h1>
         {/* <Header handleResponseSuccess={handleResponseSuccess} /> */}
 
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/map" element={<MapPage />} />
+          {/* <Route path="/" element={<Main />} /> */}
+          {/* <Route path="/map" element={<MapPage />} /> */}
+          <Route path="/" element={<MapPage />} />
         </Routes>
       </main>
       {/* <Route exact path="/home" component={Home} />
