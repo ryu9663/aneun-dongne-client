@@ -35,6 +35,13 @@ export const getPlaces = async (params: PlaceParams): Promise<any> => {
     )
 
     .then(res => res.data)
+    // .then(res => {
+    //   if (!res.response || !res.response.body) throw new Error();
+    //   else {
+    //     console.log(res.response.body.items.item);
+    //     return res.response.body.items.item;
+    //   }
+    // })
     .catch(err => console.log(err));
   return data;
 };

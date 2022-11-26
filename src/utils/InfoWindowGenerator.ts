@@ -3,7 +3,7 @@ export const infoWindowGenerator = (content: string) => {
   return `<div style=${style}>${content}</div>`;
 };
 
-export const photoWindowGenerator = (title: string, img: string) => {
+export const photoInfoWindowGenerator = (title: string, img: string) => {
   return `<div style="width: 200px">
   <div class="info">
       <div class="title">

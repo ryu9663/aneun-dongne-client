@@ -1,0 +1,68 @@
+import { useEffect, useMemo, useRef } from 'react';
+import styles from './kakaomap.module.scss';
+import { PositionType } from '../../index';
+
+import { onDragMap, showSelectedPlacesInfo } from '../../../../utils/handleMapMarkers';
+import { PlaceType } from 'pages/mappage/types';
+import { useQuery } from '@tanstack/react-query';
+import queryKeys from 'query/queryKeys';
+import { getPlaces } from 'query/queryFn';
+import useMap from 'utils/hooks/useMap';
+import { Loading } from 'pages/mappage/Loading/Loading';
+import P from './P';
+import PlaceList from '../PlaceList/PlaceList';
+
+export interface Props {
+  currentPosition?: PositionType;
+  places?: PlaceType[];
+  setPlaces: (places: PlaceType[]) => void;
+  pickPoint?: PositionType;
+  setPickPoint?: (position?: PositionType) => void;
+
+  setMap: (map: any) => void;
+}
+
+const KakaoMap = ({ currentPosition, setPlaces, pickPoint, setPickPoint, setMap }: Props) => {
+  const mapRef = useRef(null);
+  //!
+  const placeParmas = useMemo(
+    () => ({
+      numOfRows: 50,
+      mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
+      mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
+      radius: 10000
+    }),
+    [pickPoint]
+  );
+
+  const { data, isLoading } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {});
+  //!
+  const placesData = data?.response?.body?.items.item;
+
+  const { map: kakaoMap } = useMap(mapRef, placesData, currentPosition);
+  useEffect(() => setMap(kakaoMap), [kakaoMap]);
+  useEffect(() => {
+    setPlaces(placesData);
+  }, [placesData]);
+
+  useEffect(() => {
+    if (kakaoMap.current) {
+      setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
+    }
+  }, [pickPoint]);
+
+  return (
+    <>
+      <article className={styles.wrapper}>
+        {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
+        <div ref={mapRef} className={styles.map} id={styles.map}>
+          <div className={styles.map_experiment}>
+            &nbsp;&nbsp;{'지도를 드래그하면 주변 10km에 위치한 관광지들을 검색합니다.'}
+          </div>
+        </div>
+      </article>
+    </>
+  );
+};
+
+export default KakaoMap;

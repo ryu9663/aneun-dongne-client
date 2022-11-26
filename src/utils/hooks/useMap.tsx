@@ -1,4 +1,4 @@
-import { addZoomControler, removeMarkers, makeOtherMarkers } from 'components/KakaoMap/handler';
+import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
 import { PlaceType } from 'pages/mappage/types';
 import { useEffect, useRef, useState } from 'react';
 import { PositionType } from './useCurrentPosition';
