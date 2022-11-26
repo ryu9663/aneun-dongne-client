@@ -55,7 +55,7 @@ const KakaoMap = ({ currentPosition, setPlaces, pickPoint, setPickPoint, setMap 
         {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
         <div ref={mapRef} className={styles.map} id={styles.map}>
           <div className={styles.map_experiment}>
-            &nbsp;&nbsp;{'지도를 드래그하면 주변 10km에 위치한 관광지들을 검색합니다.'}
+            &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
           </div>
         </div>
       </article>
