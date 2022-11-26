@@ -13,6 +13,10 @@
     left: 10px;
     top: 10px;
   }
+  .info {
+    margin-left: 20px;
+    font-weight: bold;
+  }
   &_button_wrapper {
     position: absolute;
     right: 10px;
@@ -21,7 +25,7 @@
     gap: 20px;
 
     button {
-      width: 100px;
+      width: fit-content;
       height: 50px;
       background-color: transparent;
       text-align: center;
