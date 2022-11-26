@@ -2,15 +2,13 @@ import { useEffect, useMemo, useRef } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../index';
 
-import { onDragMap, showSelectedPlacesInfo } from '../../../../utils/handleMapMarkers';
+import { onDragMap } from '../../../../utils/handleMapMarkers';
 import { PlaceType } from 'pages/mappage/types';
 import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/mappage/Loading/Loading';
-import P from './P';
-import PlaceList from '../PlaceList/PlaceList';
 
 export interface Props {
   currentPosition?: PositionType;

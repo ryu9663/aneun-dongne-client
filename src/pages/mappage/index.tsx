@@ -1,14 +1,9 @@
 import KakaoMap from 'pages/mappage/components/KakaoMap/KakaoMap';
 import useCurrentPosition from 'utils/hooks/useCurrentPosition';
 import styles from './mappage.module.scss';
-import { useEffect, useMemo, useState } from 'react';
-import { PlaceParams, PlaceType } from './types';
+import { useState } from 'react';
+import { PlaceType } from './types';
 import PlaceList from './components/PlaceList/PlaceList';
-import { Loading } from './Loading/Loading';
-import P from './components/KakaoMap/P';
-import { useQuery } from '@tanstack/react-query';
-import queryKeys from 'query/queryKeys';
-import { getPlaces } from 'query/queryFn';
 
 export interface PositionType {
   lat: number;
