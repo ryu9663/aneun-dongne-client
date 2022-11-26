@@ -10,7 +10,6 @@ const useCurrentPosition = () => {
   useEffect(() => {
     navigator.geolocation.watchPosition(
       position => {
-        console.log('신호표시용 콘솔', position);
         setPosition({ ...position, ...{ lat: position.coords.latitude, lon: position.coords.longitude } });
       },
       () => console.log('sorry no positiion available')
