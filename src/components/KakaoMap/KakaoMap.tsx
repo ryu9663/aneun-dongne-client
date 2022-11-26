@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import styles from './kakaomap.module.scss';
 import { PositionType } from '../../pages/mappage/index';
 
-import { addZoomControler, onDragMap, setOtherMarkers } from './handler';
+import { onDragMap } from './handler';
 import { PlaceType } from 'pages/mappage/types';
 import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';

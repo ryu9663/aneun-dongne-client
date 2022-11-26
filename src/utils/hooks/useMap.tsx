@@ -1,12 +1,12 @@
-import { addZoomControler, setOtherMarkers } from 'components/KakaoMap/handler';
+import { addZoomControler, removeMarkers, makeOtherMarkers } from 'components/KakaoMap/handler';
 import { PlaceType } from 'pages/mappage/types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PositionType } from './useCurrentPosition';
 
 const useMap = (mapRef: any, otherMarkers?: PlaceType[], currentPosition?: PositionType) => {
   const kakao = window.kakao;
   const kakaoMap = useRef();
-
+  const [prevMarkers, setPrevMarkers] = useState<any[]>();
   useEffect(() => {
     if (mapRef.current) {
       console.log(currentPosition);
@@ -23,8 +23,12 @@ const useMap = (mapRef: any, otherMarkers?: PlaceType[], currentPosition?: Posit
       addZoomControler(kakaoMap.current);
     }
   }, [mapRef]);
+
   useEffect(() => {
-    if (otherMarkers) setOtherMarkers(kakaoMap.current, otherMarkers);
+    if (otherMarkers) {
+      prevMarkers && removeMarkers(prevMarkers);
+      setPrevMarkers(makeOtherMarkers(kakaoMap.current, otherMarkers));
+    }
   }, [otherMarkers]);
 
   return { map: kakaoMap };
