@@ -30,7 +30,7 @@ const PlaceList = ({ places, map }: Props) => {
     <section className={styles.wrapper}>
       <div className={styles.cards}>
         {places.map(({ title, addr1, firstimage }) => (
-          <div key={title}>
+          <div key={title + addr1 + firstimage}>
             <Place title={title} addr1={addr1} firstimage={firstimage} onClick={onClickCards} />
           </div>
         ))}
