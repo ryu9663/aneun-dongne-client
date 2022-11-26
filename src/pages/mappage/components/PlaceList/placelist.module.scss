@@ -1,0 +1,17 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+}
+
+.cards {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

@@ -27,3 +27,10 @@ export interface PlaceType {
   tel: string;
   title: string;
 }
+
+export interface MarkerType {
+  position: any;
+  title: string;
+  image: any;
+  map: any;
+}
