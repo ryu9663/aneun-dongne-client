@@ -44,13 +44,18 @@ const KakaoMap = ({ currentPosition, pickPoint, setPickPoint }: Props) => {
   }, [kakaoMap]);
 
   return (
-    <>
-      <>
-        {isLoading && <span>주변 관광지들을 탐색중입니다.</span>}
-        <div className="map-experiment">&nbsp;&nbsp;{'마커를 클릭하시면 해당 문화재 검색창으로 이동합니다.'}</div>
-        <article ref={mapRef} className={styles.map} id={styles.map}></article>
-      </>
-    </>
+    <article className={styles.wrapper}>
+      <div ref={mapRef} className={styles.map} id={styles.map}>
+        <div className={styles.map_experiment}>
+          &nbsp;&nbsp;{'지도를 드래그하면 주변 10km에 위치한 관광지들을 검색합니다.'}
+        </div>
+        {isLoading && (
+          <div className={styles.loading_wrapper}>
+            <div className={styles.loading_wrapper_spinner}>주변 관광지들을 탐색중입니다.</div>
+          </div>
+        )}
+      </div>
+    </article>
   );
 };
 

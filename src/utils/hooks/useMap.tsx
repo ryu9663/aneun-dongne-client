@@ -9,7 +9,6 @@ const useMap = (mapRef: any, otherMarkers?: PlaceType[], currentPosition?: Posit
   const [prevMarkers, setPrevMarkers] = useState<any[]>();
   useEffect(() => {
     if (mapRef.current) {
-      console.log(currentPosition);
       const container = mapRef.current;
       const center = new kakao.maps.LatLng(
         currentPosition ? currentPosition.lat : 37.1597041,
