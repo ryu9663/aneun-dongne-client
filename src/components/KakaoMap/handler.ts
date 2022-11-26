@@ -17,17 +17,17 @@ export const addZoomControler = (map: any) => {
   map.addControl(zoomControl);
 };
 
-export const setOtherMarkers = (map: any, places: PlaceType[]) => {
+export const makeOtherMarkers = (map: any, places: PlaceType[]) => {
   const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
   try {
-    places
+    const markers = places
       .map(({ title, mapy, mapx, firstimage }) => ({
         hoverBox: photoWindowGenerator(title, firstimage),
         latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
         title
       }))
 
-      .forEach(place => {
+      .map(place => {
         const infowindow = new kakao.maps.InfoWindow({
           content: place.hoverBox
         });
@@ -44,12 +44,17 @@ export const setOtherMarkers = (map: any, places: PlaceType[]) => {
         kakao.maps.event.addListener(marker, 'click', () =>
           window.open(`https://www.google.com/search?q=${place.title}`)
         );
+        return marker;
       });
+    return markers;
   } catch (err) {
     console.log(err);
   }
 };
 
+export const removeMarkers = (places: any[]) => {
+  places.forEach(place => place.setMap(null));
+};
 // onClick은 쓰이진 않지만 우선 남겨둠
 export const onKakaoMapClick = (map: any, setPickPoint: (position?: PositionType) => void) => {
   kakao.maps.event.addListener(map, 'click', (e: { latLng: any }) => {
