@@ -4,18 +4,16 @@ interface Props {
   title: string;
   addr1: string;
   firstimage: string;
-  onClick: (map: any) => void;
+  onMouseEnter: (map: any) => void;
 }
 
-const Place = ({ title, addr1, firstimage, onClick }: Props) => {
+const Place = ({ title, addr1, firstimage, onMouseEnter }: Props) => {
   return (
-    <button onClick={() => onClick(title)}>
-      <div className={styles.wrapper}>
-        <span className={styles.wrapper_title}>{title}</span>
-        <img className={styles.wrapper_img} src={firstimage} alt={title} />
-        <p className={styles.addr1}>{addr1}</p>
-      </div>
-    </button>
+    <div className={styles.wrapper} onMouseEnter={() => onMouseEnter(title)}>
+      <span className={styles.wrapper_title}>{title}</span>
+      <img className={styles.wrapper_img} src={firstimage} alt={title} />
+      <p className={styles.addr1}>{addr1}</p>
+    </div>
   );
 };
 

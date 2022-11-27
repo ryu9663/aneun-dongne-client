@@ -106,7 +106,6 @@ export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
   return infowindow[0];
 };
 export const removeInfo = (infowindow: { close: () => void }) => {
-  console.log(infowindow.close());
   infowindow.close();
 };
 
