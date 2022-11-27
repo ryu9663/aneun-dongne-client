@@ -1,6 +1,15 @@
 @import 'src/styles/styles';
 
 .header {
+  & .button {
+    width: fit-content;
+    height: 30px;
+    background-color: transparent;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+  }
   position: fixed;
   top: 0;
   width: 100%;
@@ -20,20 +29,12 @@
   .info {
     font-weight: bold;
   }
-  &_button_wrapper {
-    button {
-      width: fit-content;
-      height: 50px;
-      background-color: transparent;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-    }
-  }
 }
 @include desktop {
   .header {
+    & .button {
+      height: 50px;
+    }
     .info {
       margin-left: 20px;
     }
