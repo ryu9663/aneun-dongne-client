@@ -84,7 +84,7 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
 };
 export const removeMarkers = (markers: any[]) => {
   //markerType필요함
-  console.log(markers);
+
   markers.forEach(marker => marker.setMap(null)); //setMap이 들어가있는지 타입검사 필요
 };
 export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
@@ -102,7 +102,7 @@ export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
 
       return infowindow;
     });
-  console.log(infowindow[0]);
+
   return infowindow[0];
 };
 export const removeInfo = (infowindow: { close: () => void }) => {
