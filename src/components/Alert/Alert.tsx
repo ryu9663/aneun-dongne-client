@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import styles from './alert.module.scss';
 
 interface Props {
   content: string;
-  btnContent: string;
+  btnContent?: string;
+  alertOn: boolean;
+  setAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Alert = ({ content, btnContent }: Props) => {
-  const [alertOn, setAlertOn] = useState(true);
+const Alert = ({ content, btnContent = '확인', alertOn, setAlertOn }: Props) => {
   return (
     <>
       {alertOn && (
@@ -18,7 +18,7 @@ const Alert = ({ content, btnContent }: Props) => {
               e.stopPropagation();
             }}
           >
-            {content}
+            <pre>{content}</pre>
             <button className={styles.alert_button} onClick={() => setAlertOn(false)}>
               {btnContent}
             </button>

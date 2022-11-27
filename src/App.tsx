@@ -1,15 +1,23 @@
 import Alert from 'components/Alert/Alert';
 import Header from 'components/Header/Header';
 import MapPage from 'pages/mappage';
+import { useState } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 import { detectDevice } from 'utils/detectDevice';
 
 function App() {
   const device = detectDevice();
+  const [showDeviceAlert, setShowDeviceAlert] = useState(true);
   return (
     <>
-      {device !== 'PC' && <Alert content="아직은 모바일, 태블릿 최적화가 이루어지지 않았습니다." btnContent="확인" />}
+      {device !== 'PC' && (
+        <Alert
+          alertOn={showDeviceAlert}
+          setAlertOn={setShowDeviceAlert}
+          content="아직은 모바일, 태블릿 최적화가 이루어지지 않았습니다."
+        />
+      )}
       <Header />
       <main>
         <h1 className="section_title_hidden">아는동네</h1>
