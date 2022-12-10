@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Alert from 'components/Alert/Alert';
 
 const develpePlan = `
-지도에서 이전마커가 사라지지 않는 버그
 관광지 세부 페이지
 모바일,태블릿 반응형
 `;

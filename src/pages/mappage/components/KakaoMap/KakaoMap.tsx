@@ -3,7 +3,7 @@ import styles from './kakaomap.module.scss';
 import { PositionType } from '../../index';
 
 import { onDragMap } from '../../../../utils/handleMapMarkers';
-import { PlaceType } from 'pages/mappage/types';
+import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
@@ -16,11 +16,20 @@ export interface Props {
   setPlaces: (places: PlaceType[]) => void;
   pickPoint?: PositionType;
   setPickPoint?: (position?: PositionType) => void;
-
   setMap: (map: any) => void;
+  prevMarkers?: MarkerType[];
+  setPrevMarkers?: (markers: MarkerType[]) => void;
 }
 
-const KakaoMap = ({ currentPosition, setPlaces, pickPoint, setPickPoint, setMap }: Props) => {
+const KakaoMap = ({
+  currentPosition,
+  setPlaces,
+  pickPoint,
+  setPickPoint,
+  setMap,
+  prevMarkers,
+  setPrevMarkers
+}: Props) => {
   const mapRef = useRef(null);
   //!
   const placeParmas = useMemo(
@@ -37,7 +46,7 @@ const KakaoMap = ({ currentPosition, setPlaces, pickPoint, setPickPoint, setMap 
   //!
   const placesData = data?.response?.body?.items.item;
 
-  const { map: kakaoMap } = useMap(mapRef, placesData, currentPosition);
+  const { map: kakaoMap } = useMap(mapRef, { otherMarkers: placesData, currentPosition, prevMarkers, setPrevMarkers });
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
   useEffect(() => {
     setPlaces(placesData);
