@@ -2,7 +2,7 @@ import KakaoMap from 'pages/mappage/components/KakaoMap/KakaoMap';
 import useCurrentPosition from 'utils/hooks/useCurrentPosition';
 import styles from './mappage.module.scss';
 import { useState } from 'react';
-import { PlaceType } from './types';
+import { MarkerType, PlaceType } from './types';
 import PlaceList from './components/PlaceList/PlaceList';
 
 export interface PositionType {
@@ -14,7 +14,8 @@ const MapPage = () => {
   const { loading: currentPositionLoading, position: currentPosition } = useCurrentPosition();
   const [pickPoint, setPickPoint] = useState<PositionType>();
   const [places, setPlaces] = useState<PlaceType[]>();
-
+  const [prevInfo, setPrevInfo] = useState();
+  const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
   return (
     <section className={styles.wrapper}>
@@ -29,9 +30,20 @@ const MapPage = () => {
             places={places}
             setPlaces={setPlaces}
             setMap={setMap}
+            prevMarkers={prevMarkers}
+            setPrevMarkers={setPrevMarkers}
           />
 
-          {places && <PlaceList places={places} map={map} />}
+          {places && (
+            <PlaceList
+              prevInfo={prevInfo}
+              setPrevInfo={setPrevInfo}
+              places={places}
+              map={map}
+              prevMarkers={prevMarkers}
+              setPrevMarkers={setPrevMarkers}
+            />
+          )}
         </>
       )}
     </section>

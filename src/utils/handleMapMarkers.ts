@@ -17,46 +17,9 @@ export const addZoomControler = (map: any) => {
   map.addControl(zoomControl);
 };
 
-export const makeOtherMarkers = (map: any, places: PlaceType[]) => {
+export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
   const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-  try {
-    const markers = places
-      .map(({ title, mapy, mapx, firstimage }) => ({
-        hoverBox: photoInfoWindowGenerator(title, firstimage),
-        latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
-        title
-      }))
-
-      .map(place => {
-        const infowindow = new kakao.maps.InfoWindow({
-          content: place.hoverBox
-        });
-
-        const marker: MarkerType = new kakao.maps.Marker({
-          map,
-          position: place.latlng,
-          title: place.hoverBox,
-          image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
-        });
-
-        kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
-        kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-        kakao.maps.event.addListener(marker, 'click', () =>
-          window.open(`https://www.google.com/search?q=${place.title}`)
-        );
-        return marker;
-      });
-    return markers;
-  } catch (err) {
-    console.log(err);
-  }
-};
-export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => {
-  //타입지정
-
-  const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
-  const markers = selectedPlace
+  const markers = places
     .map(({ title, mapy, mapx, firstimage }) => ({
       hoverBox: photoInfoWindowGenerator(title, firstimage),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
@@ -75,17 +38,51 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
         image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
       });
 
-      infowindow.open(map, marker);
+      kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
+      kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
+      kakao.maps.event.addListener(marker, 'click', () =>
+        window.open(`https://www.google.com/search?q=${place.title}`)
+      );
+      return marker;
+    });
+  return markers;
+};
+export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => {
+  //타입지정
 
+  const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+
+  const markers = selectedPlace
+    .map(({ title, mapy, mapx, firstimage }) => ({
+      hoverBox: photoInfoWindowGenerator(title, firstimage),
+      latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
+      title
+    }))
+
+    .map(place => {
+      const infowindow = new kakao.maps.InfoWindow({
+        content: place.hoverBox
+      });
+
+      const marker = new kakao.maps.Marker({
+        map,
+        position: place.latlng,
+        title: place.hoverBox,
+        image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
+      });
+      marker.setMap(null);
+      infowindow.open(map, marker);
       return infowindow;
     });
 
-  return markers;
+  return markers[0];
 };
-export const removeMarkers = (markers: any[]) => {
+
+export const removeMarkers = (markers: any[], setPrevMarkers: any) => {
   //markerType필요함
 
   markers.forEach(marker => marker.setMap(null)); //setMap이 들어가있는지 타입검사 필요
+  // setPrevMarkers([]);
 };
 export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
   const infowindow = places
