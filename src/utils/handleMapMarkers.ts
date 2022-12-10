@@ -21,7 +21,7 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
   const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
   const markers = places
     .map(({ title, mapy, mapx, firstimage }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage),
+      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
@@ -54,7 +54,7 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
 
   const markers = selectedPlace
     .map(({ title, mapy, mapx, firstimage }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage),
+      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
@@ -87,7 +87,7 @@ export const removeMarkers = (markers: any[], setPrevMarkers: any) => {
 export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
   const infowindow = places
     .map(({ title, mapy, mapx, firstimage }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage),
+      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
@@ -103,7 +103,6 @@ export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
   return infowindow[0];
 };
 export const removeInfo = (infowindow: { close: () => void }) => {
-  console.log(infowindow);
   infowindow.close();
 };
 
