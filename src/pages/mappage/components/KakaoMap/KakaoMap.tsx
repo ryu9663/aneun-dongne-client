@@ -42,7 +42,7 @@ const KakaoMap = ({
     [pickPoint]
   );
 
-  const { data, isLoading } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
+  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
   //!
 
   const placesData = data?.response?.body?.items.item;
@@ -51,8 +51,7 @@ const KakaoMap = ({
     otherMarkers: placesData,
     defaultPosition: currentPosition,
     prevMarkers,
-    setPrevMarkers,
-    defaultMarker: true
+    setPrevMarkers
   });
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
   useEffect(() => {
@@ -64,7 +63,7 @@ const KakaoMap = ({
       setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
     }
   }, [pickPoint]);
-
+  if (isError) return <div>error</div>;
   return (
     <>
       <article className={styles.wrapper}>

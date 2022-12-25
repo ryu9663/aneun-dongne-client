@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { getPlaceInfo } from 'query/queryFn';
 import styles from './detailpage.module.scss';
-import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useMap from 'utils/hooks/useMap';
 
 const DetailPage = () => {
@@ -16,7 +16,6 @@ const DetailPage = () => {
   const { data, isLoading } = useQuery([queryKeys.PLACE(contentId)], () => getPlaceInfo(contentId));
   useEffect(() => {
     if (data) {
-      console.log(data);
       setDefaultPosition({ lat: data.mapy, lon: data.mapx });
     }
   }, [data]);
