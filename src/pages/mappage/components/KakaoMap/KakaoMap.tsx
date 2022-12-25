@@ -42,11 +42,18 @@ const KakaoMap = ({
     [pickPoint]
   );
 
-  const { data, isLoading } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {});
+  const { data, isLoading } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
   //!
+
   const placesData = data?.response?.body?.items.item;
 
-  const { map: kakaoMap } = useMap(mapRef, { otherMarkers: placesData, currentPosition, prevMarkers, setPrevMarkers });
+  const { map: kakaoMap } = useMap(mapRef, {
+    otherMarkers: placesData,
+    defaultPosition: currentPosition,
+    prevMarkers,
+    setPrevMarkers,
+    defaultMarker: true
+  });
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
   useEffect(() => {
     setPlaces(placesData);

@@ -1,5 +1,6 @@
 import Alert from 'components/Alert/Alert';
 import Header from 'components/Header/Header';
+import DetailPage from 'pages/detailpage';
 import MapPage from 'pages/mappage';
 import { useState } from 'react';
 
@@ -25,6 +26,7 @@ function App() {
           {/* <Route path="/" element={<Main />} /> */}
           {/* <Route path="/map" element={<MapPage />} /> */}
           <Route path="/" element={<MapPage />} />
+          <Route path="/detailpage/:contentId" element={<DetailPage />} />
         </Routes>
       </main>
       {/* <Route exact path="/home" component={Home} />

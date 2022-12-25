@@ -39,3 +39,21 @@ export const getPlaces = async (params: PlaceParams): Promise<any> => {
     .catch(err => console.log(err));
   return data;
 };
+
+export const getPlaceInfo = async (contentId: string) => {
+  const data = await axios
+    .get(
+      `${process.env.REACT_APP_TOUR_API_URL}/detailCommon?ServiceKey=${process.env.REACT_APP_TOUR_API_KEY}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
+      {
+        params: {
+          MobileOS: 'ETC',
+          MobileApp: 'TourAPI3.0_Guide',
+          contentId
+        },
+        headers: { 'content-type': 'application/json' }
+      }
+    )
+    .then(res => res.data.response.body.items.item[0])
+    .catch(err => console.log(err));
+  return data;
+};
