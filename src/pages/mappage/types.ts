@@ -33,4 +33,5 @@ export interface MarkerType {
   title: string;
   image: any;
   map: any;
+  setMap: any;
 }

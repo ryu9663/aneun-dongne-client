@@ -1,6 +1,6 @@
 import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/mappage/types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { PositionType } from './useCurrentPosition';
 
 interface MapParams {
@@ -14,32 +14,41 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
   const kakao = window.kakao;
   const kakaoMap = useRef();
 
-  const { otherMarkers, defaultPosition, prevMarkers, setPrevMarkers, defaultMarker } = mapParams;
+  const { otherMarkers, defaultPosition, prevMarkers, setPrevMarkers, defaultMarker = false } = mapParams;
+  const center = new kakao.maps.LatLng(
+    defaultPosition ? defaultPosition.lat : 37.1597041,
+    defaultPosition ? defaultPosition.lon : 128.213384
+  );
+  const option = {
+    center,
+    level: 8
+  };
 
   useEffect(() => {
-    if (mapRef.current) {
-      console.log(mapRef);
+    //파란마커 없는 상황
+    if (mapRef.current && !defaultMarker) {
       const container = mapRef.current;
-      const center = new kakao.maps.LatLng(
-        defaultPosition ? defaultPosition.lat : 37.1597041,
-        defaultPosition ? defaultPosition.lon : 128.213384
-      );
-      const option = {
-        center,
-        level: 8
-      };
+
       kakaoMap.current = new kakao.maps.Map(container, option);
 
-      if (defaultMarker) {
-        const marker = new kakao.maps.Marker({
-          position: center
-        });
-
-        marker.setMap(kakaoMap.current);
-      }
       addZoomControler(kakaoMap.current);
     }
-  }, [mapRef, defaultPosition]);
+  }, [mapRef]);
+
+  useEffect(() => {
+    //파란마커가 필요한 상황
+    if (defaultMarker && mapRef.current) {
+      const container = mapRef.current;
+
+      kakaoMap.current = new kakao.maps.Map(container, option);
+
+      addZoomControler(kakaoMap.current);
+      const marker = new kakao.maps.Marker({
+        position: center
+      });
+      marker.setMap(kakaoMap.current);
+    }
+  }, [defaultPosition, mapRef]);
 
   useEffect(() => {
     if (otherMarkers && setPrevMarkers) {
