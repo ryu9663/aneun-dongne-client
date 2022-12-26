@@ -2,10 +2,18 @@
   position: relative;
   width: 100%;
   min-height: 100%;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    height: 8px;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f2f5fd;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(19, 170, 245, 0.23) 0%, rgba(29, 206, 255, 0.23) 100%);
+    border-radius: 2px;
   }
 }
 

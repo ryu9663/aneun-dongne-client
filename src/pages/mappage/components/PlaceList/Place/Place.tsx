@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import styles from './place.module.scss';
+import { StyledLink } from 'utils/StyledLink';
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => {
   return (
-    <Link to={`/detailpage/${contentId}`}>
+    <StyledLink to={`/detailpage/${contentId}`}>
       <div className={styles.wrapper} onMouseEnter={() => onMouseEnter(title)}>
         <span className={styles.wrapper_title}>{title}</span>
         <img
@@ -21,7 +21,7 @@ const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => 
         />
         <p className={styles.addr1}>{addr1}</p>
       </div>
-    </Link>
+    </StyledLink>
   );
 };
 

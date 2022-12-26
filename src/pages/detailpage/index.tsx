@@ -29,8 +29,8 @@ const DetailPage = () => {
           <span className={styles.wrapper_info_title}>{data.title}</span>
           <img
             className={styles.wrapper_info_firstimage}
-            src={data.firstimage}
-            alt={data.title}
+            src={data.firstimage || '/images/no-image.png'}
+            alt={data.firstimage ? data.title : '관광공사에 관광지의 사진이 등록되어 있지 않습니다.'}
             width={823}
             height={483}
           />
