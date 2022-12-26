@@ -20,10 +20,11 @@ export const addZoomControler = (map: any) => {
 export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
   const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
   const markers = places
-    .map(({ title, mapy, mapx, firstimage }) => ({
+    .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
-      title
+      title,
+      contentid
     }))
 
     .map(place => {
@@ -40,9 +41,7 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
 
       kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
       kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-      kakao.maps.event.addListener(marker, 'click', () =>
-        window.open(`https://www.google.com/search?q=${place.title}`)
-      );
+      kakao.maps.event.addListener(marker, 'click', () => window.open(`/detailpage/${place.contentid}`));
       return marker;
     });
   return markers;
