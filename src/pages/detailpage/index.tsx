@@ -34,10 +34,11 @@ const DetailPage = () => {
             width={823}
             height={483}
           />
-          <p className={styles.wrapper_info_overview}>{data.overview.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n')}</p>
+
           <div ref={mapRef} className={styles.map} id={styles.map}>
             <div className={styles.map_experiment}></div>
           </div>
+          <p className={styles.wrapper_info_overview}>{data.overview.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n')}</p>
         </div>
       </section>
     );
