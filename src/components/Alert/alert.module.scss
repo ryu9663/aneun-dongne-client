@@ -1,7 +1,6 @@
 @import 'src/styles/styles';
 
 .alert {
-  // @include desktop {
   &_wrapper {
     position: fixed;
     top: 0;
@@ -33,5 +32,4 @@
     padding: 10px 20px;
     border-radius: 5px;
   }
-  // }
 }
