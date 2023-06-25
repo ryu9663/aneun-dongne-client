@@ -1,5 +1,6 @@
+@import 'src/styles/styles';
+
 .wrapper {
-  text-decoration: none;
   color: black;
 
   border: 1px solid gray;
@@ -8,15 +9,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 320px;
-  min-width: 300px;
+  width: 100px;
+  height: 180px;
   &_title {
     margin-bottom: 10px;
   }
   &_img {
-    width: 200px;
-    height: 200px;
+    width: 80px;
+    height: 80px;
   }
-  &_addr1 {
+
+  @include desktop {
+    color: black;
+
+    border: 1px solid gray;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+    min-width: 300px;
+    &_title {
+      margin-bottom: 10px;
+    }
+    &_img {
+      width: 200px;
+      height: 200px;
+    }
+    &_addr1 {
+    }
+    &_button {
+      padding: 10px;
+      border-radius: 10px;
+
+      color: black;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
