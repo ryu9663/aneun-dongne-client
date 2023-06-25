@@ -4,6 +4,8 @@ import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 
 import Place from './Place/Place';
 import styles from './placelist.module.scss';
+import CloudyArea from '../../../../components/DragSlider/CloudyArea';
+import { DragSlider } from 'components/DragSlider/DragSlider';
 
 interface Props {
   places: PlaceType[];
@@ -36,19 +38,21 @@ const PlaceList = ({ places, map, prevMarkers, prevInfo, setPrevInfo, setPrevMar
 
   return (
     <section className={styles.wrapper}>
-      <div className={styles.cards}>
-        {places.map(({ title, addr1, firstimage, contentid }) => (
-          <div key={title + addr1 + firstimage}>
-            <Place
-              title={title}
-              addr1={addr1}
-              firstimage={firstimage}
-              onMouseEnter={onHoverCards}
-              contentId={contentid}
-            />
-          </div>
-        ))}
-      </div>
+      <DragSlider hasCloudyArea>
+        <div className={styles.cards}>
+          {places.map(({ title, addr1, firstimage, contentid }) => (
+            <div key={title + addr1 + firstimage}>
+              <Place
+                title={title}
+                addr1={addr1}
+                firstimage={firstimage}
+                onMouseEnter={onHoverCards}
+                contentId={contentid}
+              />
+            </div>
+          ))}
+        </div>
+      </DragSlider>
     </section>
   );
 };
