@@ -10,13 +10,7 @@ interface Props {
 
 const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => {
   return (
-    <a
-      className={styles.wrapper}
-      onMouseEnter={() => onMouseEnter(title)}
-      href={`/detailpage/${contentId}`}
-      rel="noreferrer"
-      target="_blank"
-    >
+    <div className={styles.wrapper}>
       <span className={styles.wrapper_title}>{title}</span>
       <img
         className={styles.wrapper_img}
@@ -24,7 +18,16 @@ const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => 
         alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
       />
       <p className={styles.addr1}>{addr1}</p>
-    </a>
+      <a
+        className={styles.wrapper_button}
+        onMouseEnter={() => onMouseEnter(title)}
+        rel="noreferrer"
+        target="_blank"
+        href={`/detailpage/${contentId}`}
+      >
+        자세히보기
+      </a>
+    </div>
   );
 };
 
