@@ -47,7 +47,7 @@ const KakaoMap = ({
     onSuccess: ({ response }) => {
       const items: PlaceType[] = response.body.items.item;
       const imgSrcs = items.map(item => item.firstimage);
-      preloadImages(imgSrcs);
+      preloadImages(imgSrcs, 200, 100);
     }
   });
   //!
