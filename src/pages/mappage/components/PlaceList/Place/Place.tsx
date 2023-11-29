@@ -1,4 +1,7 @@
+import { Skeleton } from 'pages/mappage/components/PlaceList/Place/Skeleton';
 import styles from './place.module.scss';
+import { useEffect, useState } from 'react';
+import { useImageLoaded } from 'utils/hooks/useImageLoaded';
 
 interface Props {
   title: string;
@@ -9,14 +12,20 @@ interface Props {
 }
 
 const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => {
+  const imageLoaded = useImageLoaded(firstimage);
+
   return (
     <div className={styles.wrapper}>
       <span className={styles.wrapper_title}>{title}</span>
-      <img
-        className={styles.wrapper_img}
-        src={firstimage || '/images/no-image.png'}
-        alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
-      />
+      {imageLoaded ? (
+        <img
+          className={styles.wrapper_img}
+          src={firstimage || '/images/no-image.png'}
+          alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
+        />
+      ) : (
+        <Skeleton />
+      )}
       <p className={styles.addr1}>{addr1}</p>
       <a
         className={styles.wrapper_button}
