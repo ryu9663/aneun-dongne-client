@@ -9,6 +9,7 @@ import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/mappage/Loading/Loading';
+import { preloadImages } from 'utils/preloadImage';
 
 export interface Props {
   currentPosition?: PositionType;
@@ -34,7 +35,7 @@ const KakaoMap = ({
   //!
   const placeParmas = useMemo(
     () => ({
-      numOfRows: 50,
+      numOfRows: 20,
       mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
       mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
       radius: 10000
@@ -42,7 +43,13 @@ const KakaoMap = ({
     [pickPoint]
   );
 
-  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
+  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {
+    onSuccess: ({ response }) => {
+      const items: PlaceType[] = response.body.items.item;
+      const imgSrcs = items.map(item => item.firstimage);
+      preloadImages(imgSrcs);
+    }
+  });
   //!
   const placesData = data?.response?.body?.items.item;
 
@@ -52,6 +59,7 @@ const KakaoMap = ({
     prevMarkers,
     setPrevMarkers
   });
+
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
   useEffect(() => {
     setPlaces(placesData);
