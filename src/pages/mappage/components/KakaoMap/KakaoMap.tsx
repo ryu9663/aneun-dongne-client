@@ -44,7 +44,6 @@ const KakaoMap = ({
 
   const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
   //!
-
   const placesData = data?.response?.body?.items.item;
 
   const { map: kakaoMap } = useMap(mapRef, {
@@ -65,16 +64,14 @@ const KakaoMap = ({
   }, [pickPoint]);
   if (isError) return <div>error</div>;
   return (
-    <>
-      <article className={styles.wrapper}>
-        {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
-        <div ref={mapRef} className={styles.map} id={styles.map}>
-          <div className={styles.map_experiment}>
-            &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
-          </div>
+    <article className={styles.wrapper}>
+      {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
+      <div ref={mapRef} className={styles.map} id={styles.map}>
+        <div className={styles.map_experiment}>
+          &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
         </div>
-      </article>
-    </>
+      </div>
+    </article>
   );
 };
 
