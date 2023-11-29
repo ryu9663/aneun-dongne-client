@@ -1,0 +1,27 @@
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.skeleton-container {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulsate 1s ease-in-out infinite;
+}
+
+.skeleton-box {
+  width: 80%;
+  height: 60%;
+  background-color: #ddd;
+  border-radius: 8px;
+}
