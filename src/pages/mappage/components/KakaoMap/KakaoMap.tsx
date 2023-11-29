@@ -9,6 +9,7 @@ import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/mappage/Loading/Loading';
+import { preloadImages } from 'utils/preloadImage';
 
 export interface Props {
   currentPosition?: PositionType;
@@ -34,7 +35,7 @@ const KakaoMap = ({
   //!
   const placeParmas = useMemo(
     () => ({
-      numOfRows: 50,
+      numOfRows: 20,
       mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
       mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
       radius: 10000
@@ -42,9 +43,14 @@ const KakaoMap = ({
     [pickPoint]
   );
 
-  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas));
+  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {
+    onSuccess: ({ response }) => {
+      const items: PlaceType[] = response.body.items.item;
+      const imgSrcs = items.map(item => item.firstimage);
+      preloadImages(imgSrcs, 200, 100);
+    }
+  });
   //!
-
   const placesData = data?.response?.body?.items.item;
 
   const { map: kakaoMap } = useMap(mapRef, {
@@ -53,6 +59,7 @@ const KakaoMap = ({
     prevMarkers,
     setPrevMarkers
   });
+
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
   useEffect(() => {
     setPlaces(placesData);
@@ -65,16 +72,14 @@ const KakaoMap = ({
   }, [pickPoint]);
   if (isError) return <div>error</div>;
   return (
-    <>
-      <article className={styles.wrapper}>
-        {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
-        <div ref={mapRef} className={styles.map} id={styles.map}>
-          <div className={styles.map_experiment}>
-            &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
-          </div>
+    <article className={styles.wrapper}>
+      {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
+      <div ref={mapRef} className={styles.map} id={styles.map}>
+        <div className={styles.map_experiment}>
+          &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
         </div>
-      </article>
-    </>
+      </div>
+    </article>
   );
 };
 

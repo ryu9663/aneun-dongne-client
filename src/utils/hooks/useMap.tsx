@@ -1,6 +1,6 @@
 import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/mappage/types';
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
 
 interface MapParams {
@@ -28,7 +28,6 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
     //파란마커 없는 상황
     if (mapRef.current && !defaultMarker) {
       const container = mapRef.current;
-
       kakaoMap.current = new kakao.maps.Map(container, option);
 
       addZoomControler(kakaoMap.current);

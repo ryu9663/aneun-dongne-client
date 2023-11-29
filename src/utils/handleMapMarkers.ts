@@ -2,6 +2,7 @@ import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/InfoWindowG
 
 import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { PositionType } from './hooks/useCurrentPosition';
+import { OTHER_MARKER_IMAGE } from 'utils/constant';
 
 const kakao = window.kakao;
 
@@ -18,7 +19,6 @@ export const addZoomControler = (map: any) => {
 };
 
 export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
-  const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
@@ -36,7 +36,7 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
         map,
         position: place.latlng,
         title: place.hoverBox,
-        image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
+        image: new kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new kakao.maps.Size(24, 35))
       });
 
       kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
@@ -48,9 +48,6 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
 };
 export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => {
   //타입지정
-
-  const OtherMarkerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
   const markers = selectedPlace
     .map(({ title, mapy, mapx, firstimage }) => ({
       hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
@@ -67,7 +64,7 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
         map,
         position: place.latlng,
         title: place.hoverBox,
-        image: new kakao.maps.MarkerImage(OtherMarkerImageSrc, new kakao.maps.Size(24, 35))
+        image: new kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new kakao.maps.Size(24, 35))
       });
       marker.setMap(null);
       infowindow.open(map, marker);
