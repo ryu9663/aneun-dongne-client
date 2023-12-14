@@ -1,0 +1,16 @@
+.search_options {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  z-index: 99;
+  font-size: 16px;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+}
+
+.modal_body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

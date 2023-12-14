@@ -6,6 +6,7 @@ import { onDragMap } from '../../../../utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/Home/types';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/Home/Loading';
+import { SearchOption } from 'pages/Home/components/KakaoMap/SearchOption';
 
 export interface Props {
   currentPosition?: PositionType;
@@ -55,6 +56,7 @@ const KakaoMap = ({
         <h2 className={styles.map_experiment}>
           &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
         </h2>
+        <SearchOption />
       </div>
     </article>
   );
