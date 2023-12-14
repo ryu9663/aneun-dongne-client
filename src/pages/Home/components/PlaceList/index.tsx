@@ -1,4 +1,4 @@
-import { MarkerType, PlaceType } from 'pages/mappage/types';
+import { PlaceType } from 'pages/Home/types';
 import { useEffect } from 'react';
 import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 
@@ -8,13 +8,14 @@ import { DragSlider } from 'junyeol-components';
 
 interface Props {
   places: PlaceType[];
+  //! TODO : any
   map: any;
-  prevMarkers?: MarkerType[];
-  setPrevMarkers?: (markers: MarkerType[]) => void;
   prevInfo: any;
   setPrevInfo: any;
+
+  //!
 }
-const PlaceList = ({ places, map, prevInfo, setPrevInfo, setPrevMarkers }: Props) => {
+const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
   const onHoverCards = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);

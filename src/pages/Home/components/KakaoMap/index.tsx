@@ -1,76 +1,52 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { PositionType } from '../../index';
-
 import { onDragMap } from '../../../../utils/handleMapMarkers';
-import { MarkerType, PlaceType } from 'pages/mappage/types';
-import { useQuery } from '@tanstack/react-query';
-import queryKeys from 'query/queryKeys';
-import { getPlaces } from 'query/queryFn';
+import { MarkerType, PlaceType } from 'pages/Home/types';
 import useMap from 'utils/hooks/useMap';
-import { Loading } from 'pages/mappage/Loading';
-import { preloadImages } from 'utils/preloadImage';
+import { Loading } from 'pages/Home/Loading';
 
 export interface Props {
   currentPosition?: PositionType;
   places?: PlaceType[];
-  setPlaces: (places: PlaceType[]) => void;
   pickPoint?: PositionType;
   setPickPoint?: (position?: PositionType) => void;
   setMap: (map: any) => void;
   prevMarkers?: MarkerType[];
   setPrevMarkers?: (markers: MarkerType[]) => void;
+  isError: boolean;
+  isLoading: boolean;
 }
 
 const KakaoMap = ({
   currentPosition,
-  setPlaces,
+  places,
   pickPoint,
   setPickPoint,
   setMap,
   prevMarkers,
-  setPrevMarkers
+  setPrevMarkers,
+  isError,
+  isLoading
 }: Props) => {
   const mapRef = useRef(null);
-  //!
-  const placeParmas = useMemo(
-    () => ({
-      numOfRows: 20,
-      mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
-      mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
-      radius: 10000
-    }),
-    [pickPoint]
-  );
-
-  const { data, isLoading, isError } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {
-    onSuccess: ({ response }) => {
-      const items: PlaceType[] = response.body.items.item;
-      const imgSrcs = items.map(item => item.firstimage);
-      preloadImages(imgSrcs, 200, 100);
-    }
-  });
-  //!
-  const placesData = data?.response?.body?.items.item;
 
   const { map: kakaoMap } = useMap(mapRef, {
-    otherMarkers: placesData,
+    otherMarkers: places,
     defaultPosition: currentPosition,
     prevMarkers,
     setPrevMarkers
   });
 
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
-  useEffect(() => {
-    setPlaces(placesData);
-  }, [placesData]);
 
   useEffect(() => {
     if (kakaoMap.current) {
       setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
     }
   }, [pickPoint]);
+
   if (isError) return <div>error</div>;
   return (
     <article className={styles.map_wrapper}>
