@@ -1,4 +1,4 @@
-https://release-sksk-v0-1.d2k5gfnc9y1cty.amplifyapp.com/
+[안녕 동네](https://hivillage.wnsdufdl.com/)
 
 ### 개발환경세팅
 
