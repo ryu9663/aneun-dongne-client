@@ -1,4 +1,4 @@
-import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/infoWindowGenerator';
+import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/infoGenerator';
 
 import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { PositionType } from './hooks/useCurrentPosition';
