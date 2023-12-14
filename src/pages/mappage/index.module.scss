@@ -1,3 +1,14 @@
 .wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kakaomap_wrapper {
+  flex: 1;
+}
+
+.placelist_wrapper {
+  height: 380px;
 }

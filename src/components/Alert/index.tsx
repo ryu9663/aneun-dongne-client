@@ -1,4 +1,4 @@
-import styles from './alert.module.scss';
+import styles from './index.module.scss';
 
 interface Props {
   content: string;

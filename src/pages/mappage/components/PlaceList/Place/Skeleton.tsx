@@ -1,4 +1,4 @@
-import styles from './skeleton.module.scss';
+import styles from './index.module.scss';
 export const Skeleton = () => {
   return (
     <div className={styles['skeleton-container']}>

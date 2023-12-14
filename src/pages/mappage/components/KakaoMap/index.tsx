@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useRef } from 'react';
-import styles from './kakaomap.module.scss';
+import styles from './index.module.scss';
 import { PositionType } from '../../index';
 
 import { onDragMap } from '../../../../utils/handleMapMarkers';
@@ -73,7 +73,7 @@ const KakaoMap = ({
   }, [pickPoint]);
   if (isError) return <div>error</div>;
   return (
-    <article className={styles.wrapper}>
+    <article className={styles.map_wrapper}>
       {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
       <div ref={mapRef} className={styles.map} id={styles.map}>
         <h2 className={styles.map_experiment}>

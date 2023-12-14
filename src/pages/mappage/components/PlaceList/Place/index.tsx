@@ -1,5 +1,5 @@
 import { Skeleton } from 'pages/mappage/components/PlaceList/Place/Skeleton';
-import styles from './place.module.scss';
+import styles from './index.module.scss';
 import { useImageLoaded } from 'utils/hooks/useImageLoaded';
 
 interface Props {
