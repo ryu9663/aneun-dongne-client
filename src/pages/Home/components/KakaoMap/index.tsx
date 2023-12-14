@@ -31,10 +31,6 @@ const KakaoMap = ({
   isLoading
 }: Props) => {
   const mapRef = useRef(null);
-  //!
-
-  //!
-  // const placesData = data?.response?.body?.items.item;
 
   const { map: kakaoMap } = useMap(mapRef, {
     otherMarkers: places,
@@ -50,6 +46,7 @@ const KakaoMap = ({
       setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
     }
   }, [pickPoint]);
+
   if (isError) return <div>error</div>;
   return (
     <article className={styles.map_wrapper}>

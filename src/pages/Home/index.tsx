@@ -21,7 +21,6 @@ export const Home = () => {
   const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
 
-  //!
   const placeParmas = useMemo(
     () => ({
       numOfRows: 20,
@@ -31,6 +30,7 @@ export const Home = () => {
     }),
     [currentPosition?.lat, currentPosition?.lon, pickPoint]
   );
+
   const {
     data: places,
     isLoading,
@@ -40,15 +40,12 @@ export const Home = () => {
       return data.response.body.items.item as PlaceType[];
     },
     onSuccess: items => {
-      console.log(items);
-
       const imgSrcs = items.map(item => item.firstimage);
       preloadImages(imgSrcs, 200, 100);
     },
     enabled: !!currentPosition
   });
 
-  //!
   return (
     <section className={styles.wrapper}>
       {currentPositionLoading ? (
