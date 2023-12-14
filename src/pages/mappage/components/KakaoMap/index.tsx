@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useRef } from 'react';
-import styles from './kakaomap.module.scss';
+import styles from './index.module.scss';
 import { PositionType } from '../../index';
 
 import { onDragMap } from '../../../../utils/handleMapMarkers';
@@ -8,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
 import useMap from 'utils/hooks/useMap';
-import { Loading } from 'pages/mappage/Loading/Loading';
+import { Loading } from 'pages/mappage/Loading';
 import { preloadImages } from 'utils/preloadImage';
 
 export interface Props {
@@ -72,12 +73,12 @@ const KakaoMap = ({
   }, [pickPoint]);
   if (isError) return <div>error</div>;
   return (
-    <article className={styles.wrapper}>
+    <article className={styles.map_wrapper}>
       {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
       <div ref={mapRef} className={styles.map} id={styles.map}>
-        <div className={styles.map_experiment}>
+        <h2 className={styles.map_experiment}>
           &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
-        </div>
+        </h2>
       </div>
     </article>
   );

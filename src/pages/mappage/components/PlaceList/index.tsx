@@ -2,10 +2,9 @@ import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { useEffect } from 'react';
 import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 
-import Place from './Place/Place';
-import styles from './placelist.module.scss';
-import CloudyArea from '../../../../components/DragSlider/CloudyArea';
-import { DragSlider } from 'components/DragSlider/DragSlider';
+import Place from './Place';
+import styles from './index.module.scss';
+import { DragSlider } from 'junyeol-components';
 
 interface Props {
   places: PlaceType[];
@@ -15,7 +14,7 @@ interface Props {
   prevInfo: any;
   setPrevInfo: any;
 }
-const PlaceList = ({ places, map, prevMarkers, prevInfo, setPrevInfo, setPrevMarkers }: Props) => {
+const PlaceList = ({ places, map, prevInfo, setPrevInfo, setPrevMarkers }: Props) => {
   const onHoverCards = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
@@ -37,23 +36,20 @@ const PlaceList = ({ places, map, prevMarkers, prevInfo, setPrevInfo, setPrevMar
   }, [prevInfo]);
 
   return (
-    <section className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <DragSlider hasCloudyArea>
-        <div className={styles.cards}>
-          {places.map(({ title, addr1, firstimage, contentid }) => (
-            <div key={title + addr1 + firstimage}>
-              <Place
-                title={title}
-                addr1={addr1}
-                firstimage={firstimage}
-                onMouseEnter={onHoverCards}
-                contentId={contentid}
-              />
-            </div>
-          ))}
-        </div>
+        {places.map(({ title, addr1, firstimage, contentid }) => (
+          <Place
+            title={title}
+            addr1={addr1}
+            firstimage={firstimage}
+            onMouseEnter={onHoverCards}
+            contentId={contentid}
+            key={title + addr1 + firstimage}
+          />
+        ))}
       </DragSlider>
-    </section>
+    </div>
   );
 };
 

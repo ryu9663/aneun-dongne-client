@@ -1,4 +1,4 @@
-import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/InfoWindowGenerator';
+import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/infoWindowGenerator';
 
 import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { PositionType } from './hooks/useCurrentPosition';
@@ -41,7 +41,11 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
 
       kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
       kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-      kakao.maps.event.addListener(marker, 'click', () => window.open(`/detailpage/${place.contentid}`));
+      kakao.maps.event.addListener(marker, 'click', () =>
+        window.open(
+          `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${place.title}`
+        )
+      );
       return marker;
     });
   return markers;

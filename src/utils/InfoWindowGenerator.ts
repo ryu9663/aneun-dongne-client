@@ -12,9 +12,9 @@ export const photoInfoWindowGenerator = (title: string, img: string) => {
       </div>
       <div class="body">
           <div class="img">
-              <img width='200' height='150' src=${img} >
+              <img width='200' height='150' src=${img} alt=${title}>
          </div>
-         <span>말풍선을 클릭하면 자세히 보기 페이지로 넘어갑니다.</span>
+         <span>노란색 마커를 클릭하면 네이버 검색창으로 이동합니다.</span>
       </div>
   </div>
 </div>`;
