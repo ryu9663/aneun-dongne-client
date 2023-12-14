@@ -2,9 +2,8 @@ import { MarkerType, PlaceType } from 'pages/mappage/types';
 import { useEffect } from 'react';
 import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 
-import Place from './Place/Place';
+import Place from './Place';
 import styles from './placelist.module.scss';
-import CloudyArea from '../../../../components/DragSlider/CloudyArea';
 import { DragSlider } from 'components/DragSlider/DragSlider';
 
 interface Props {

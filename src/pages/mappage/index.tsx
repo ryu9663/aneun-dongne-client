@@ -1,9 +1,9 @@
-import KakaoMap from 'pages/mappage/components/KakaoMap/KakaoMap';
+import KakaoMap from 'pages/mappage/components/KakaoMap';
 import useCurrentPosition from 'utils/hooks/useCurrentPosition';
 import styles from './mappage.module.scss';
 import { useState } from 'react';
 import { MarkerType, PlaceType } from './types';
-import PlaceList from './components/PlaceList/PlaceList';
+import PlaceList from './components/PlaceList';
 
 export interface PositionType {
   lat: number;
