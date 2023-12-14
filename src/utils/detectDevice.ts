@@ -7,3 +7,4 @@ export const detectDevice = () => {
     return 'Mobile';
   } else return 'Tablet';
 };
+console.log('hi');
