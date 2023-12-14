@@ -2,38 +2,30 @@ import { Skeleton } from 'pages/Home/components/PlaceList/Place/Skeleton';
 import styles from './index.module.scss';
 import { useImageLoaded } from 'utils/hooks/useImageLoaded';
 
-interface Props {
+interface PlaceProps {
   title: string;
-  addr1: string;
   firstimage: string;
-  onMouseEnter: (map: any) => void;
-  contentId: string;
+  onMouseEnter: (title: string) => void;
 }
 
-const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => {
+const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
   const imageLoaded = useImageLoaded(firstimage);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onMouseEnter={() => onMouseEnter(title)}>
       <span className={styles.wrapper_title}>{title}</span>
       {imageLoaded ? (
-        <>
+        <a
+          href={`https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${title}`}
+          target="_blank"
+          rel="noreferrer"
+        >
           <img
             className={styles.wrapper_img}
             src={firstimage || '/images/no-image.png'}
             alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
           />
-          <p className={styles.addr1}>{addr1}</p>
-          <a
-            className={styles.wrapper_button}
-            onMouseEnter={() => onMouseEnter(title)}
-            rel="noreferrer"
-            target="_blank"
-            href={`/detailpage/${contentId}`}
-          >
-            자세히보기
-          </a>
-        </>
+        </a>
       ) : (
         <Skeleton />
       )}

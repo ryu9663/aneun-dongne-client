@@ -16,10 +16,20 @@ html {
 }
 
 main {
-  margin-top: 70px;
-  height: calc(100vh - 70px);
+  height: calc(100vh);
 }
 
 button {
   cursor: pointer;
+}
+
+h1 {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
 }

@@ -16,7 +16,7 @@ interface Props {
   //!
 }
 const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
-  const onHoverCards = (title: string) => {
+  const onHoverCard = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
     }
@@ -40,14 +40,7 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
     <div className={styles.wrapper}>
       <DragSlider hasCloudyArea>
         {places.map(({ title, addr1, firstimage, contentid }) => (
-          <Place
-            title={title}
-            addr1={addr1}
-            firstimage={firstimage}
-            onMouseEnter={onHoverCards}
-            contentId={contentid}
-            key={title + addr1 + firstimage}
-          />
+          <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
         ))}
       </DragSlider>
     </div>

@@ -1,5 +1,7 @@
 const body = document.querySelector('body');
+
 const MIN_DURATION = 10;
+
 function makeSnowflake() {
   const snowflake = document.createElement('div');
   const delay = Math.random() * 10;
