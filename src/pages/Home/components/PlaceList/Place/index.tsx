@@ -17,24 +17,26 @@ const Place = ({ title, addr1, firstimage, onMouseEnter, contentId }: Props) => 
     <div className={styles.wrapper}>
       <span className={styles.wrapper_title}>{title}</span>
       {imageLoaded ? (
-        <img
-          className={styles.wrapper_img}
-          src={firstimage || '/images/no-image.png'}
-          alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
-        />
+        <>
+          <img
+            className={styles.wrapper_img}
+            src={firstimage || '/images/no-image.png'}
+            alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
+          />
+          <p className={styles.addr1}>{addr1}</p>
+          <a
+            className={styles.wrapper_button}
+            onMouseEnter={() => onMouseEnter(title)}
+            rel="noreferrer"
+            target="_blank"
+            href={`/detailpage/${contentId}`}
+          >
+            자세히보기
+          </a>
+        </>
       ) : (
         <Skeleton />
       )}
-      <p className={styles.addr1}>{addr1}</p>
-      <a
-        className={styles.wrapper_button}
-        onMouseEnter={() => onMouseEnter(title)}
-        rel="noreferrer"
-        target="_blank"
-        href={`/detailpage/${contentId}`}
-      >
-        자세히보기
-      </a>
     </div>
   );
 };
