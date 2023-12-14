@@ -1,4 +1,4 @@
-@import 'src/styles/styles';
+@use 'src/styles/libs' as *;
 
 .alert {
   &_wrapper {

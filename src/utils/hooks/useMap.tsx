@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/Home/types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
 
 interface MapParams {
@@ -15,14 +16,21 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
   const kakaoMap = useRef();
 
   const { otherMarkers, defaultPosition, prevMarkers, setPrevMarkers, defaultMarker = false } = mapParams;
-  const center = new kakao.maps.LatLng(
-    defaultPosition ? defaultPosition.lat : 37.1597041,
-    defaultPosition ? defaultPosition.lon : 128.213384
+  const center = useMemo(
+    () =>
+      new kakao.maps.LatLng(
+        defaultPosition ? defaultPosition.lat : 37.1597041,
+        defaultPosition ? defaultPosition.lon : 128.213384
+      ),
+    [defaultPosition, kakao.maps.LatLng]
   );
-  const option = {
-    center,
-    level: 8
-  };
+  const option = useMemo(
+    () => ({
+      center,
+      level: 8
+    }),
+    [center]
+  );
 
   useEffect(() => {
     //파란마커 없는 상황
@@ -32,7 +40,7 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
 
       addZoomControler(kakaoMap.current);
     }
-  }, [mapRef]);
+  }, [defaultMarker, kakao.maps.Map, mapRef, option]);
 
   useEffect(() => {
     //파란마커가 필요한 상황

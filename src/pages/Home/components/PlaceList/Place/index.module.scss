@@ -1,4 +1,4 @@
-@import 'src/styles/styles';
+@use 'src/styles/libs' as *;
 
 .wrapper {
   color: black;
@@ -28,8 +28,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 320px;
-    min-width: 300px;
+    min-height: 300px;
+    min-width: 250px;
     &_title {
       margin-bottom: 10px;
     }
