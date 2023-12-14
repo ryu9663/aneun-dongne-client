@@ -1,4 +1,4 @@
-import KakaoMap from 'pages/mappage/components/KakaoMap';
+import KakaoMap from 'pages/Home/components/KakaoMap';
 import useCurrentPosition from 'utils/hooks/useCurrentPosition';
 import styles from './index.module.scss';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ export interface PositionType {
   lon: number;
 }
 
-const MapPage = () => {
+export const Home = () => {
   const { loading: currentPositionLoading, position: currentPosition } = useCurrentPosition();
   const [pickPoint, setPickPoint] = useState<PositionType>();
   const [places, setPlaces] = useState<PlaceType[]>();
@@ -54,5 +54,3 @@ const MapPage = () => {
     </section>
   );
 };
-
-export default MapPage;

@@ -1,5 +1,5 @@
 import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
-import { MarkerType, PlaceType } from 'pages/mappage/types';
+import { MarkerType, PlaceType } from 'pages/Home/types';
 import { useEffect, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
 

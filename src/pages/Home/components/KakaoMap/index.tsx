@@ -4,12 +4,12 @@ import styles from './index.module.scss';
 import { PositionType } from '../../index';
 
 import { onDragMap } from '../../../../utils/handleMapMarkers';
-import { MarkerType, PlaceType } from 'pages/mappage/types';
+import { MarkerType, PlaceType } from 'pages/Home/types';
 import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { getPlaces } from 'query/queryFn';
 import useMap from 'utils/hooks/useMap';
-import { Loading } from 'pages/mappage/Loading';
+import { Loading } from 'pages/Home/Loading';
 import { preloadImages } from 'utils/preloadImage';
 
 export interface Props {

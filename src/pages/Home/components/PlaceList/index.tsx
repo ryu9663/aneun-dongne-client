@@ -1,4 +1,4 @@
-import { MarkerType, PlaceType } from 'pages/mappage/types';
+import { MarkerType, PlaceType } from 'pages/Home/types';
 import { useEffect } from 'react';
 import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 

@@ -1,6 +1,6 @@
 import Alert from 'components/Alert';
 import Header from 'components/Header';
-import MapPage from 'pages/mappage';
+import { Home } from 'pages/Home';
 import { useState } from 'react';
 import 'styles/_global.scss';
 import { Route, Routes } from 'react-router-dom';
@@ -17,7 +17,7 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<MapPage />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </main>
     </>
