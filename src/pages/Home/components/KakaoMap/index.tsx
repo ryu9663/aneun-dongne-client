@@ -7,12 +7,11 @@ import { MarkerType, PlaceType } from 'pages/Home/types';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/Home/Loading';
 import { SearchOption } from 'pages/Home/components/KakaoMap/SearchOption';
+import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
 
 export interface Props {
   currentPosition?: PositionType;
   places?: PlaceType[];
-  pickPoint?: PositionType;
-  setPickPoint?: (position?: PositionType) => void;
   setMap: (map: any) => void;
   prevMarkers?: MarkerType[];
   setPrevMarkers?: (markers: MarkerType[]) => void;
@@ -23,8 +22,7 @@ export interface Props {
 const KakaoMap = ({
   currentPosition,
   places,
-  pickPoint,
-  setPickPoint,
+
   setMap,
   prevMarkers,
   setPrevMarkers,
@@ -39,6 +37,8 @@ const KakaoMap = ({
     prevMarkers,
     setPrevMarkers
   });
+
+  const [pickPoint, setPickPoint] = usePlacesStore(state => [state.pickPoint, state.setPickPoint]);
 
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
 

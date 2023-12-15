@@ -1,4 +1,4 @@
-import { Input, OptionTag, Selectbox } from 'junyeol-components';
+import { Input, DropdownTag, Selectbox } from 'junyeol-components';
 import styles from './index.module.scss';
 import { useState } from 'react';
 
@@ -7,7 +7,7 @@ export const SearchOption = () => {
 
   return (
     <div className={styles.search_options}>
-      <OptionTag name="관광지 검색 옵션 조정" className={`${styles.button} ${styles['font-weight-700']}`}>
+      <DropdownTag name="관광지 검색 옵션 조정" className={`${styles.button} ${styles['font-weight-700']}`}>
         <div>
           <Selectbox
             name="관광지 검색 수"
@@ -34,7 +34,7 @@ export const SearchOption = () => {
             placeholder="반경(m)"
           />
         </div>
-      </OptionTag>
+      </DropdownTag>
     </div>
   );
 };

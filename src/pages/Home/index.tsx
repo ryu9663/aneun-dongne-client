@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import queryKeys from 'query/queryKeys';
 import { preloadImages } from 'utils/preloadImage';
 import { getPlaces } from 'query/queryFn';
+import { usePlacesQuery } from 'pages/Home/hooks/usePlacesQuery';
 
 export interface PositionType {
   lat: number;
@@ -16,35 +17,11 @@ export interface PositionType {
 
 export const Home = () => {
   const { loading: currentPositionLoading, position: currentPosition } = useCurrentPosition();
-  const [pickPoint, setPickPoint] = useState<PositionType>();
   const [prevInfo, setPrevInfo] = useState();
   const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
 
-  const placeParmas = useMemo(
-    () => ({
-      numOfRows: 20,
-      mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
-      mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
-      radius: 10000
-    }),
-    [currentPosition?.lat, currentPosition?.lon, pickPoint]
-  );
-
-  const {
-    data: places,
-    isLoading,
-    isError
-  } = useQuery([queryKeys.PLACES(placeParmas)], () => getPlaces(placeParmas), {
-    select: data => {
-      return data.response.body.items.item as PlaceType[];
-    },
-    onSuccess: items => {
-      const imgSrcs = items.map(item => item.firstimage);
-      preloadImages(imgSrcs, 200, 100);
-    },
-    enabled: !!currentPosition
-  });
+  const { data: places, isLoading, isError } = usePlacesQuery(currentPosition);
 
   return (
     <section className={styles.wrapper}>
@@ -57,8 +34,6 @@ export const Home = () => {
               isError={isError}
               isLoading={isLoading}
               currentPosition={currentPosition}
-              pickPoint={pickPoint}
-              setPickPoint={setPickPoint}
               places={places}
               setMap={setMap}
               prevMarkers={prevMarkers}
