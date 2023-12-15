@@ -22,15 +22,18 @@ export const usePlacesQuery = (currentPosition?: PositionType) => {
         mapY: pickPoint ? pickPoint.lat : currentPosition?.lat
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPosition, pickPoint]);
 
   const query = useQuery([queryKeys.PLACES(placeParams)], () => getPlaces(placeParams), {
     select: data => {
-      return data.response.body.items.item as PlaceType[];
+      return data.response.body.items.item as PlaceType[] | undefined;
     },
     onSuccess: items => {
-      const imgSrcs = items.map(item => item.firstimage);
-      preloadImages(imgSrcs, 200, 100);
+      if (items) {
+        const imgSrcs = items.map(item => item.firstimage);
+        preloadImages(imgSrcs, 200, 100);
+      }
     },
     enabled: !!currentPosition
   });

@@ -30,7 +30,7 @@ const KakaoMap = ({
   isLoading
 }: Props) => {
   const mapRef = useRef(null);
-
+  console.log(places);
   const { map: kakaoMap } = useMap(mapRef, {
     otherMarkers: places,
     defaultPosition: currentPosition,

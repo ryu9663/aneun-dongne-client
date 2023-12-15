@@ -7,6 +7,8 @@ interface PlacesStoreProps {
   setPickPoint: (pickPoint?: PositionType) => void;
   placeParams: PlaceParams;
   setPlaceParams: (placeParmas: PlaceParams) => void;
+  a: string;
+  setA: (a: string) => void;
 }
 export const usePlacesStore = create<PlacesStoreProps>(set => ({
   pickPoint: undefined,
@@ -17,5 +19,7 @@ export const usePlacesStore = create<PlacesStoreProps>(set => ({
     mapY: undefined,
     radius: 20000
   },
-  setPlaceParams: placeParams => set({ placeParams })
+  setPlaceParams: placeParams => set({ placeParams }),
+  a: 's',
+  setA: a => set({ a })
 }));

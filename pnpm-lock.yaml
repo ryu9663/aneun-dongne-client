@@ -15,8 +15,8 @@ dependencies:
     specifier: ^6.7.1
     version: 6.8.1(webpack@5.89.0)
   junyeol-components:
-    specifier: ^0.1.10
-    version: 0.1.10(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    specifier: ^0.1.12
+    version: 0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -100,6 +100,9 @@ devDependencies:
   eslint-plugin-react-hooks:
     specifier: ^4.6.0
     version: 4.6.0(eslint@8.55.0)
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   prettier:
     specifier: ^2.7.1
     version: 2.8.8
@@ -6813,8 +6816,8 @@ packages:
       object.assign: 4.1.5
       object.values: 1.1.7
 
-  /junyeol-components@0.1.10(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
-    resolution: {integrity: sha512-KGgdU9BOOL4GVAZPBbWxAnKxcUcC2u/CkQeg8AhhujpT/M/zNQHArS4EU7Y2n1YXwvWgISfzS4g0xVmBIP+gaA==}
+  /junyeol-components@0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+    resolution: {integrity: sha512-APkLarPOJGavnExhDweem2Hhb6nfLslyVVOEr2o6Dai2xjJAA5aXsGVqq/bfsjwXFmG0Nv6uXn5pJlN3rV6wVQ==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
