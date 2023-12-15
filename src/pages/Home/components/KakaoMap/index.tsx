@@ -6,12 +6,12 @@ import { onDragMap } from '../../../../utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/Home/types';
 import useMap from 'utils/hooks/useMap';
 import { Loading } from 'pages/Home/Loading';
+import { SearchOption } from 'pages/Home/components/KakaoMap/SearchOption';
+import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
 
 export interface Props {
   currentPosition?: PositionType;
   places?: PlaceType[];
-  pickPoint?: PositionType;
-  setPickPoint?: (position?: PositionType) => void;
   setMap: (map: any) => void;
   prevMarkers?: MarkerType[];
   setPrevMarkers?: (markers: MarkerType[]) => void;
@@ -19,17 +19,7 @@ export interface Props {
   isLoading: boolean;
 }
 
-const KakaoMap = ({
-  currentPosition,
-  places,
-  pickPoint,
-  setPickPoint,
-  setMap,
-  prevMarkers,
-  setPrevMarkers,
-  isError,
-  isLoading
-}: Props) => {
+const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers, isError, isLoading }: Props) => {
   const mapRef = useRef(null);
 
   const { map: kakaoMap } = useMap(mapRef, {
@@ -38,6 +28,8 @@ const KakaoMap = ({
     prevMarkers,
     setPrevMarkers
   });
+
+  const [pickPoint, setPickPoint] = usePlacesStore(state => [state.pickPoint, state.setPickPoint]);
 
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
 
@@ -55,6 +47,7 @@ const KakaoMap = ({
         <h2 className={styles.map_experiment}>
           &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
         </h2>
+        <SearchOption />
       </div>
     </article>
   );
