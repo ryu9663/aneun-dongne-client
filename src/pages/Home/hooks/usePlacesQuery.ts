@@ -16,14 +16,13 @@ export const usePlacesQuery = (currentPosition?: PositionType) => {
 
   useEffect(() => {
     if (currentPosition) {
-      console.log(currentPosition);
       setPlaceParams({
         ...placeParams,
         mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
         mapY: pickPoint ? pickPoint.lat : currentPosition?.lat
       });
     }
-  }, [currentPosition, pickPoint, placeParams, setPlaceParams]);
+  }, [currentPosition, pickPoint]);
 
   const query = useQuery([queryKeys.PLACES(placeParams)], () => getPlaces(placeParams), {
     select: data => {
