@@ -19,18 +19,9 @@ export interface Props {
   isLoading: boolean;
 }
 
-const KakaoMap = ({
-  currentPosition,
-  places,
-
-  setMap,
-  prevMarkers,
-  setPrevMarkers,
-  isError,
-  isLoading
-}: Props) => {
+const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers, isError, isLoading }: Props) => {
   const mapRef = useRef(null);
-  console.log(places);
+
   const { map: kakaoMap } = useMap(mapRef, {
     otherMarkers: places,
     defaultPosition: currentPosition,

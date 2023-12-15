@@ -1,11 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Input, DropdownTag, Selectbox } from 'junyeol-components';
 import styles from './index.module.scss';
 import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
-import { useDeferredValue } from 'react';
+import { useDebounce } from 'utils/hooks/useDebounce';
+import { useCallback } from 'react';
+import { debounce } from 'lodash-es';
 
 export const SearchOption = () => {
-  const [placeParams, setPlaceParams] = usePlacesStore(state => [state.placeParams, state.setPlaceParams]);
-  const deferredRadius = useDeferredValue(placeParams.radius);
+  const [setStoreRadius, setNumOfRows] = usePlacesStore(state => [state.setRadius, state.setNumOfRows]);
+  const [radius, setRadius] = useDebounce(500);
+
+  const handleDebounceRadius = useCallback(
+    debounce((radius: number) => {
+      setStoreRadius(radius);
+    }, 500),
+    []
+  );
+
   return (
     <div className={styles.search_options}>
       <DropdownTag name="관광지 검색 옵션 조정" className={`${styles.button} ${styles['font-weight-700']}`}>
@@ -13,7 +24,7 @@ export const SearchOption = () => {
           <Selectbox
             name="관광지 검색 수"
             size="medium"
-            onChange={numOfPlaces => setPlaceParams({ ...placeParams, numOfRows: numOfPlaces })}
+            onChange={numOfPlaces => setNumOfRows(numOfPlaces)}
             options={[
               { name: '10개', value: 10 },
               { name: '20개', value: 20 },
@@ -25,9 +36,10 @@ export const SearchOption = () => {
 
           <Input
             type="text"
-            value={deferredRadius}
+            value={radius}
             onChange={e => {
-              setPlaceParams({ ...placeParams, radius: Number(e.target.value) });
+              setRadius(e.target.value);
+              handleDebounceRadius(Number(e.target.value));
             }}
             validation={value => {
               return isNaN(Number(value)) ? '숫자만 입력해주세요' : '';

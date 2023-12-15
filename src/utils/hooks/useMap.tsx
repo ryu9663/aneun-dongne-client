@@ -59,9 +59,7 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
 
   useEffect(() => {
     if (setPrevMarkers) {
-      console.log('otherMarkers', otherMarkers);
       prevMarkers && removeMarkers(prevMarkers, setPrevMarkers);
-
       setPrevMarkers(makeOtherMarkers(kakaoMap.current, otherMarkers || []));
     }
   }, [otherMarkers]);

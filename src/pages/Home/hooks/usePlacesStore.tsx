@@ -1,25 +1,21 @@
 import { PositionType } from 'pages/Home';
-import { PlaceParams } from 'pages/Home/types';
 import { create } from 'zustand';
 
 interface PlacesStoreProps {
   pickPoint?: PositionType;
   setPickPoint: (pickPoint?: PositionType) => void;
-  placeParams: PlaceParams;
-  setPlaceParams: (placeParmas: PlaceParams) => void;
-  a: string;
-  setA: (a: string) => void;
+  radius: number;
+  setRadius: (radius?: number) => void;
+  numOfRows: number;
+  setNumOfRows: (numOfRows?: number) => void;
 }
 export const usePlacesStore = create<PlacesStoreProps>(set => ({
   pickPoint: undefined,
   setPickPoint: pickPoint => set({ pickPoint }),
-  placeParams: {
-    numOfRows: 20,
-    mapX: undefined,
-    mapY: undefined,
-    radius: 20000
+  radius: 10000,
+  setRadius: radius => {
+    set({ radius });
   },
-  setPlaceParams: placeParams => set({ placeParams }),
-  a: 's',
-  setA: a => set({ a })
+  numOfRows: 20,
+  setNumOfRows: numOfRows => set({ numOfRows })
 }));
