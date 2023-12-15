@@ -15,8 +15,8 @@ dependencies:
     specifier: ^6.7.1
     version: 6.8.1(webpack@5.89.0)
   junyeol-components:
-    specifier: ^0.1.6
-    version: 0.1.6(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    specifier: ^0.1.9
+    version: 0.1.9(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -6810,8 +6810,8 @@ packages:
       object.assign: 4.1.5
       object.values: 1.1.7
 
-  /junyeol-components@0.1.6(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
-    resolution: {integrity: sha512-E2ieUBcRLZjhNPBuojpSL3R0GgzV6IFLowjnX+d+H9pHZpbyYrhfZpE5f3VbcSKgOR9yck+yHT6WwZjy3/ncuQ==}
+  /junyeol-components@0.1.9(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+    resolution: {integrity: sha512-Ced/BLTI349+GR0vxMXy32h3AxZ3MBqR7Mt+W+yzjsk8mtidaUt1lUs/Ne4gnKya5/Cm0d/zQaMbp0iGKvpxNA==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
