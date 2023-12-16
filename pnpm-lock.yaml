@@ -15,8 +15,8 @@ dependencies:
     specifier: ^6.7.1
     version: 6.8.1(webpack@5.89.0)
   junyeol-components:
-    specifier: ^0.1.12
-    version: 0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+    specifier: ^0.1.19
+    version: 0.1.19(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -2144,11 +2144,6 @@ packages:
       source-map: 0.7.4
       webpack: 5.89.0
       webpack-dev-server: 4.15.1(webpack@5.89.0)
-    dev: false
-
-  /@remix-run/router@1.14.0:
-    resolution: {integrity: sha512-WOHih+ClN7N8oHk9N4JUiMxQJmRVaOxcg8w7F/oHUXzJt920ekASLI/7cYX8XkntDWRhLZtsk6LbGrkgOAvi5A==}
-    engines: {node: '>=14.0.0'}
     dev: false
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.23.6)(rollup@2.79.1):
@@ -6816,8 +6811,8 @@ packages:
       object.assign: 4.1.5
       object.values: 1.1.7
 
-  /junyeol-components@0.1.12(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
-    resolution: {integrity: sha512-APkLarPOJGavnExhDweem2Hhb6nfLslyVVOEr2o6Dai2xjJAA5aXsGVqq/bfsjwXFmG0Nv6uXn5pJlN3rV6wVQ==}
+  /junyeol-components@0.1.19(@types/react@18.2.45)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+    resolution: {integrity: sha512-iSJhlCJBFO4eqOF2oePuz+0rrlua4ry0rFmGH4+oebCviUOR85XNnFc7IUHHTr4AL1jaJUHIVqIwAzmjfSKTFA==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -6827,7 +6822,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-feather: 2.0.10(react@18.2.0)
-      react-router-dom: 6.21.0(react-dom@18.2.0)(react@18.2.0)
       sass: 1.69.5
       zustand: 4.4.7(@types/react@18.2.45)(react@18.2.0)
     transitivePeerDependencies:
@@ -8554,29 +8548,6 @@ packages:
   /react-refresh@0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
-    dev: false
-
-  /react-router-dom@6.21.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.14.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.21.0(react@18.2.0)
-    dev: false
-
-  /react-router@6.21.0(react@18.2.0):
-    resolution: {integrity: sha512-hGZ0HXbwz3zw52pLZV3j3+ec+m/PQ9cTpBvqjFQmy2XVUWGn5MD+31oXHb6dVTxYzmAeaiUBYjkoNz66n3RGCg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.14.0
-      react: 18.2.0
     dev: false
 
   /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.23.3)(@babel/plugin-transform-react-jsx@7.23.4)(eslint@8.55.0)(react@18.2.0)(sass@1.69.5)(typescript@4.9.5):

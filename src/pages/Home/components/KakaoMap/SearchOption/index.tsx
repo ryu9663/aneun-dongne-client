@@ -19,11 +19,13 @@ export const SearchOption = () => {
 
   return (
     <div className={styles.search_options}>
-      <DropdownTag name="관광지 검색 옵션 조정" className={`${styles.button} ${styles['font-weight-700']}`}>
-        <div>
+      <DropdownTag fontSize="normal" fontWeight={400} name="관광지 검색 옵션 조정" className={styles.dropdown_wrapper}>
+        <div className={styles.dropdown}>
           <Selectbox
+            fontSize="normal"
+            fontWeight={400}
             name="관광지 검색 수"
-            size="medium"
+            size="normal"
             onChange={numOfPlaces => setNumOfRows(numOfPlaces)}
             options={[
               { name: '10개', value: 10 },
@@ -44,8 +46,8 @@ export const SearchOption = () => {
             validation={value => {
               return isNaN(Number(value)) ? '숫자만 입력해주세요' : '';
             }}
-            label={{ htmlFor: 'radius', name: '반경(KM)' }}
-            placeholder="반경(KM)"
+            label={{ htmlFor: 'radius', name: '반경(km)' }}
+            placeholder="반경(km)"
           />
         </div>
       </DropdownTag>
