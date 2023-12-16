@@ -1,5 +1,5 @@
-import styles from './Skeleton.module.scss';
-export const Skeleton = () => {
+import styles from './PlaceSkeleton.module.scss';
+export const PlaceSkeleton = () => {
   return (
     <div className={styles.card_wrapper}>
       <div className={styles.card_loading}>

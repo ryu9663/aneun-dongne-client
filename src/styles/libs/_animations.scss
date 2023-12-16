@@ -1,6 +1,5 @@
 @mixin fade-in($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: fade-in $duration cubic-bezier(0.39, 0.575, 0.565, 1)
-    $delay both;
+  -webkit-animation: fade-in $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
   animation: fade-in $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
 }
 
@@ -50,10 +49,8 @@
 }
 
 @mixin shake-horizontal($duration: 1s, $delay: 0s) {
-  -webkit-animation: shake-horizontal $duration
-    cubic-bezier(0.455, 0.03, 0.515, 0.955) $delay both;
-  animation: shake-horizontal $duration cubic-bezier(0.455, 0.03, 0.515, 0.955)
-    $delay both;
+  -webkit-animation: shake-horizontal $duration cubic-bezier(0.455, 0.03, 0.515, 0.955) $delay both;
+  animation: shake-horizontal $duration cubic-bezier(0.455, 0.03, 0.515, 0.955) $delay both;
 }
 
 @-webkit-keyframes shake-horizontal {
@@ -123,20 +120,16 @@
 }
 
 @mixin tilt-in-fwd-tr($duration: 1s, $delay: 0s) {
-  -webkit-animation: tilt-in-fwd-tr $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: tilt-in-fwd-tr $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
+  -webkit-animation: tilt-in-fwd-tr $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: tilt-in-fwd-tr $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes tilt-in-fwd-tr {
   0% {
     opacity: 0;
 
-    -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
-      skew(-35deg, 10deg);
-    transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
-      skew(-35deg, 10deg);
+    -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
+    transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
   }
 
   100% {
@@ -151,10 +144,8 @@
   0% {
     opacity: 0;
 
-    -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
-      skew(-35deg, 10deg);
-    transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px)
-      skew(-35deg, 10deg);
+    -webkit-transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
+    transform: rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg);
   }
 
   100% {
@@ -166,10 +157,8 @@
 }
 
 @mixin slide-in-fwd-center($duration: 1s, $delay: 0s) {
-  -webkit-animation: slide-in-fwd-center $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: slide-in-fwd-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
+  -webkit-animation: slide-in-fwd-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: slide-in-fwd-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes slide-in-fwd-center {
@@ -205,10 +194,8 @@
 }
 
 @mixin scale-in-center($duration: 1s, $delay: 0s) {
-  -webkit-animation: scale-in-center $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: scale-in-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
+  -webkit-animation: scale-in-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: scale-in-center $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes scale-in-center {
@@ -244,10 +231,8 @@
 }
 
 @mixin slide-in-right($duration: 1s, $delay: 0s) {
-  -webkit-animation: slide-in-right $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: slide-in-right $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
+  -webkit-animation: slide-in-right $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: slide-in-right $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes slide-in-right {
@@ -283,10 +268,8 @@
 }
 
 @mixin slide-in-left($duration: 1s, $delay: 0s) {
-  -webkit-animation: slide-in-left $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: slide-in-left $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay
-    both;
+  -webkit-animation: slide-in-left $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: slide-in-left $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes slide-in-left {
@@ -322,10 +305,8 @@
 }
 
 @mixin slide-out-right($duration: 1s, $delay: 0s) {
-  -webkit-animation: slide-out-right $duration
-    cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
-  animation: slide-out-right $duration cubic-bezier(0.55, 0.085, 0.68, 0.53)
-    $delay both;
+  -webkit-animation: slide-out-right $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
+  animation: slide-out-right $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
 }
 
 @-webkit-keyframes slide-out-right {
@@ -361,10 +342,8 @@
 }
 
 @mixin slide-out-left($duration: 1s, $delay: 0s) {
-  -webkit-animation: slide-out-left $duration
-    cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
-  animation: slide-out-left $duration cubic-bezier(0.55, 0.085, 0.68, 0.53)
-    $delay both;
+  -webkit-animation: slide-out-left $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
+  animation: slide-out-left $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
 }
 
 @-webkit-keyframes slide-out-left {
@@ -400,10 +379,8 @@
 }
 
 @mixin scale-in-top($duration: 0.5s, $delay: 0s) {
-  -webkit-animation: scale-in-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
-  animation: scale-in-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay
-    both;
+  -webkit-animation: scale-in-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: scale-in-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes scale-in-top {
@@ -447,10 +424,8 @@
 }
 
 @mixin scale-out-top($duration: 0.5s, $delay: 0s) {
-  -webkit-animation: scale-out-top $duration
-    cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
-  animation: scale-out-top $duration cubic-bezier(0.55, 0.085, 0.68, 0.53)
-    $delay both;
+  -webkit-animation: scale-out-top $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
+  animation: scale-out-top $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
 }
 
 @-webkit-keyframes scale-out-top {
@@ -494,10 +469,8 @@
 }
 
 @mixin swing-in-top-fwd($duration: 0.8s, $delay: 0s) {
-  -webkit-animation: swing-in-top-fwd $duration
-    cubic-bezier(0.175, 0.885, 0.32, 1.275) $delay both;
-  animation: swing-in-top-fwd $duration cubic-bezier(0.175, 0.885, 0.32, 1.275)
-    $delay both;
+  -webkit-animation: swing-in-top-fwd $duration cubic-bezier(0.175, 0.885, 0.32, 1.275) $delay both;
+  animation: swing-in-top-fwd $duration cubic-bezier(0.175, 0.885, 0.32, 1.275) $delay both;
 }
 
 @-webkit-keyframes swing-in-top-fwd {
@@ -541,10 +514,8 @@
 }
 
 @mixin fade-in-top($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: fade-in-top $duration cubic-bezier(0.39, 0.575, 0.565, 1)
-    $delay both;
-  animation: fade-in-top $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay
-    both;
+  -webkit-animation: fade-in-top $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
+  animation: fade-in-top $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
 }
 
 @-webkit-keyframes fade-in-top {
@@ -580,10 +551,8 @@
 }
 
 @mixin fade-out-top($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: fade-out-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
-  animation: fade-out-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay
-    both;
+  -webkit-animation: fade-out-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: fade-out-top $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes fade-out-top {
@@ -619,10 +588,8 @@
 }
 
 @mixin fade-in-bottom($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: fade-in-bottom $duration
-    cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
-  animation: fade-in-bottom $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay
-    both;
+  -webkit-animation: fade-in-bottom $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
+  animation: fade-in-bottom $duration cubic-bezier(0.39, 0.575, 0.565, 1) $delay both;
 }
 
 @-webkit-keyframes fade-in-bottom {
@@ -658,10 +625,8 @@
 }
 
 @mixin fade-out-bottom($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: fade-out-bottom $duration
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
-  animation: fade-out-bottom $duration cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    $delay both;
+  -webkit-animation: fade-out-bottom $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
+  animation: fade-out-bottom $duration cubic-bezier(0.25, 0.46, 0.45, 0.94) $delay both;
 }
 
 @-webkit-keyframes fade-out-bottom {
@@ -697,10 +662,8 @@
 }
 
 @mixin scale-out-horizontal($duration: 0.3s, $delay: 0s) {
-  -webkit-animation: scale-out-horizontal $duration
-    cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
-  animation: scale-out-horizontal $duration
-    cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
+  -webkit-animation: scale-out-horizontal $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
+  animation: scale-out-horizontal $duration cubic-bezier(0.55, 0.085, 0.68, 0.53) $delay both;
 }
 
 @-webkit-keyframes scale-out-horizontal {
@@ -733,4 +696,37 @@
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
   }
+}
+
+@-webkit-keyframes skeleton-gradient {
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+
+  50% {
+    background-color: rgba(165, 165, 165, 0.3);
+  }
+
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+}
+
+@keyframes skeleton-gradient {
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+
+  50% {
+    background-color: rgba(165, 165, 165, 0.3);
+  }
+
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+}
+
+@mixin skeleton {
+  -webkit-animation: skeleton-gradient 1.8s infinite ease-in-out;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
 }
