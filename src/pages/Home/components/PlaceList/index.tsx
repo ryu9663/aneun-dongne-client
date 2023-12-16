@@ -1,27 +1,33 @@
 import { PlaceType } from 'pages/Home/types';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
+import { Skeleton } from 'pages/Home/components/PlaceList/Place/Skeleton';
+import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
 
 interface Props {
-  places: PlaceType[];
+  places?: PlaceType[];
   //! TODO : any
   map: any;
   prevInfo: any;
   setPrevInfo: any;
 
   //!
+  isLoading: boolean;
 }
-const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
+const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => {
+  const WrapperRef = useRef<HTMLDivElement>(null);
+  const [radius] = usePlacesStore(state => [state.radius]);
+
   const onHoverCard = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
     }
 
-    const clickedCards = places.find(place => place.title === title);
+    const clickedCards = places?.find(place => place.title === title);
 
     if (clickedCards) {
       setPrevInfo(showSelectedPlacesInfo([clickedCards], map.current));
@@ -37,11 +43,19 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
   }, [prevInfo]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={WrapperRef}>
       <DragSlider hasCloudyArea>
-        {places.map(({ title, addr1, firstimage, contentid }) => (
-          <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
-        ))}
+        {isLoading ? (
+          <>
+            {new Array(WrapperRef.current?.clientWidth).fill(0).map((_, i) => (
+              <Skeleton key={i} />
+            ))}
+          </>
+        ) : (
+          places?.map(({ title, addr1, firstimage }) => (
+            <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
+          )) || <span>{radius}M 내에 관광지가 없습니다.</span>
+        )}
       </DragSlider>
     </div>
   );
