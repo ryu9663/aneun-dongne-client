@@ -53,8 +53,7 @@
     border-radius: 5px;
     width: 100px;
     height: 20px;
-    -webkit-animation: skeleton-gradient 1.8s infinite ease-in-out;
-    animation: skeleton-gradient 1.8s infinite ease-in-out;
+    @include skeleton;
   }
   &_img {
     border-radius: 5px;

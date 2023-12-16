@@ -44,10 +44,10 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
 
   return (
     <div className={styles.wrapper} ref={WrapperRef}>
-      <DragSlider hasCloudyArea>
+      <DragSlider hasCloudyArea hideScrollbar={isLoading}>
         {isLoading ? (
           <>
-            {new Array(WrapperRef.current?.clientWidth).fill(0).map((_, i) => (
+            {new Array(Math.floor((WrapperRef.current?.clientWidth || 2000) / 200)).fill(0).map((_, i) => (
               <PlaceSkeleton key={i} />
             ))}
           </>

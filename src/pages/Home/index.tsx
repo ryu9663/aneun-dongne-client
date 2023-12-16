@@ -6,6 +6,7 @@ import { MarkerType } from './types';
 import PlaceList from './components/PlaceList';
 import { usePlacesQuery } from 'pages/Home/hooks/usePlacesQuery';
 import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
+import { KakaoMapSkeleton } from 'pages/Home/components/KakaoMap/KakaoMapSkeleton';
 
 export interface PositionType {
   lat: number;
@@ -35,11 +36,11 @@ export const Home = () => {
 
   return (
     <section className={styles.wrapper}>
-      {currentPositionLoading ? (
-        <div>현재 위치를 불러오는 중입니다.</div>
-      ) : (
-        <>
-          <div className={styles.kakaomap_wrapper}>
+      <>
+        <div className={styles.kakaomap_wrapper}>
+          {currentPositionLoading ? (
+            <KakaoMapSkeleton />
+          ) : (
             <KakaoMap
               isError={isError}
               isLoading={isLoading}
@@ -49,20 +50,20 @@ export const Home = () => {
               prevMarkers={prevMarkers}
               setPrevMarkers={setPrevMarkers}
             />
-          </div>
-          <div className={styles.placelist_wrapper}>
-            {
-              <PlaceList
-                prevInfo={prevInfo}
-                setPrevInfo={setPrevInfo}
-                places={places}
-                map={map}
-                isLoading={isLoading}
-              />
-            }
-          </div>
-        </>
-      )}
+          )}
+        </div>
+        <div className={styles.placelist_wrapper}>
+          {
+            <PlaceList
+              prevInfo={prevInfo}
+              setPrevInfo={setPrevInfo}
+              places={places}
+              map={map}
+              isLoading={currentPositionLoading || isLoading}
+            />
+          }
+        </div>
+      </>
     </section>
   );
 };
