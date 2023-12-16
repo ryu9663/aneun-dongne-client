@@ -5,7 +5,7 @@ import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
-import { Skeleton } from 'pages/Home/components/PlaceList/Place/Skeleton';
+import { PlaceSkeleton } from 'pages/Home/components/PlaceList/Place/PlaceSkeleton';
 import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
 
 interface Props {
@@ -48,7 +48,7 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
         {isLoading ? (
           <>
             {new Array(WrapperRef.current?.clientWidth).fill(0).map((_, i) => (
-              <Skeleton key={i} />
+              <PlaceSkeleton key={i} />
             ))}
           </>
         ) : (

@@ -1,4 +1,4 @@
-import { Skeleton } from 'pages/Home/components/PlaceList/Place/Skeleton';
+import { PlaceSkeleton } from 'pages/Home/components/PlaceList/Place/PlaceSkeleton';
 import styles from './index.module.scss';
 import { useImageLoaded } from 'utils/hooks/useImageLoaded';
 
@@ -33,7 +33,7 @@ const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
           </>
         </button>
       ) : (
-        <Skeleton />
+        <PlaceSkeleton />
       )}
     </>
   );
