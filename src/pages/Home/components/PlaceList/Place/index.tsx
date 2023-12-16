@@ -12,8 +12,8 @@ const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
   const imageLoaded = useImageLoaded(firstimage);
 
   return (
-    <div className={styles.wrapper} onMouseEnter={() => onMouseEnter(title)}>
-      <span className={styles.wrapper_title}>{title}</span>
+    <button className={styles.card_wrapper} onMouseEnter={() => onMouseEnter(title)}>
+      <span className={styles.card_title}>{title}</span>
       {imageLoaded ? (
         <a
           href={`https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${title}`}
@@ -21,7 +21,7 @@ const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
           rel="noreferrer"
         >
           <img
-            className={styles.wrapper_img}
+            className={styles.card_img}
             src={firstimage || '/images/no-image.png'}
             alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
           />
@@ -29,7 +29,7 @@ const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
       ) : (
         <Skeleton />
       )}
-    </div>
+    </button>
   );
 };
 
