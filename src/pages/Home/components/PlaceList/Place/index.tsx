@@ -13,7 +13,7 @@ const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
 
   return (
     <>
-      {title !== '강남' ? (
+      {imageLoaded ? (
         <button className={styles.card_wrapper} onMouseEnter={() => onMouseEnter(title)}>
           <>
             <span className={styles.card_title}>{title}</span>

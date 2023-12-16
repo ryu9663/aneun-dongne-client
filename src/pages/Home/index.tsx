@@ -51,7 +51,7 @@ export const Home = () => {
             />
           </div>
           <div className={styles.placelist_wrapper}>
-            {places && (
+            {
               <PlaceList
                 prevInfo={prevInfo}
                 setPrevInfo={setPrevInfo}
@@ -59,7 +59,7 @@ export const Home = () => {
                 map={map}
                 isLoading={isLoading}
               />
-            )}
+            }
           </div>
         </>
       )}
