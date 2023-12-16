@@ -44,8 +44,8 @@ export const SearchOption = () => {
             validation={value => {
               return isNaN(Number(value)) ? '숫자만 입력해주세요' : '';
             }}
-            label={{ htmlFor: 'radius', name: '반경' }}
-            placeholder="반경(m)"
+            label={{ htmlFor: 'radius', name: '반경(m)' }}
+            placeholder="반경(M)"
           />
         </div>
       </DropdownTag>
