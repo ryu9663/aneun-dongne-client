@@ -29,7 +29,11 @@ const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers
     setPrevMarkers
   });
 
-  const [pickPoint, setPickPoint] = usePlacesStore(state => [state.pickPoint, state.setPickPoint]);
+  const [pickPoint, setPickPoint, radius_KM] = usePlacesStore(state => [
+    state.pickPoint,
+    state.setPickPoint,
+    state.radius_KM
+  ]);
 
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
 
@@ -45,7 +49,7 @@ const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers
       {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
       <div ref={mapRef} className={styles.map} id={styles.map}>
         <h2 className={styles.map_experiment}>
-          &nbsp;&nbsp;{'지도를 드래그하면 10km 주변에 위치한 관광지들을 검색합니다.'}
+          &nbsp;&nbsp;{`지도를 드래그하면 ${radius_KM}KM 주변에 위치한 관광지들을 검색합니다.`}
         </h2>
         <SearchOption />
       </div>

@@ -4,17 +4,17 @@ import { create } from 'zustand';
 interface PlacesStoreProps {
   pickPoint?: PositionType;
   setPickPoint: (pickPoint?: PositionType) => void;
-  radius: number;
-  setRadius: (radius?: number) => void;
+  radius_KM: number;
+  setRadius_KM: (radius?: number) => void;
   numOfRows: number;
   setNumOfRows: (numOfRows?: number) => void;
 }
 export const usePlacesStore = create<PlacesStoreProps>(set => ({
   pickPoint: undefined,
   setPickPoint: pickPoint => set({ pickPoint }),
-  radius: 10000,
-  setRadius: radius => {
-    set({ radius });
+  radius_KM: 10,
+  setRadius_KM: radius_KM => {
+    set({ radius_KM });
   },
   numOfRows: 20,
   setNumOfRows: numOfRows => set({ numOfRows })

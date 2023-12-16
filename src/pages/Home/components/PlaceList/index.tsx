@@ -20,7 +20,7 @@ interface Props {
 }
 const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => {
   const WrapperRef = useRef<HTMLDivElement>(null);
-  const [radius] = usePlacesStore(state => [state.radius]);
+  const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
 
   const onHoverCard = (title: string) => {
     if (prevInfo) {
@@ -54,7 +54,7 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
         ) : (
           places?.map(({ title, addr1, firstimage }) => (
             <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
-          )) || <span>{radius}M 내에 관광지가 없습니다.</span>
+          )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>
         )}
       </DragSlider>
     </div>
