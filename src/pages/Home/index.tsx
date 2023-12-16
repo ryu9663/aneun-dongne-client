@@ -33,7 +33,7 @@ export const Home = () => {
       numOfRows,
       mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
       mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
-      radius_KM
+      radius: radius_KM * 1000
     },
     currentPosition
   );
