@@ -7,12 +7,12 @@ import { useCallback } from 'react';
 import { debounce } from 'lodash-es';
 
 export const SearchOption = () => {
-  const [setStoreRadius, setNumOfRows] = usePlacesStore(state => [state.setRadius, state.setNumOfRows]);
-  const [radius, setRadius] = useDebounce(500);
+  const [setStoreRadius_KM, setNumOfRows] = usePlacesStore(state => [state.setRadius_KM, state.setNumOfRows]);
+  const [radius_KM, setRadius_KM] = useDebounce(500);
 
   const handleDebounceRadius = useCallback(
     debounce((radius: number) => {
-      setStoreRadius(radius);
+      setStoreRadius_KM(radius);
     }, 500),
     []
   );
@@ -36,16 +36,16 @@ export const SearchOption = () => {
 
           <Input
             type="text"
-            value={radius}
+            value={radius_KM}
             onChange={e => {
-              setRadius(e.target.value);
+              setRadius_KM(e.target.value);
               handleDebounceRadius(Number(e.target.value));
             }}
             validation={value => {
               return isNaN(Number(value)) ? '숫자만 입력해주세요' : '';
             }}
-            label={{ htmlFor: 'radius', name: '반경(m)' }}
-            placeholder="반경(M)"
+            label={{ htmlFor: 'radius', name: '반경(KM)' }}
+            placeholder="반경(KM)"
           />
         </div>
       </DropdownTag>

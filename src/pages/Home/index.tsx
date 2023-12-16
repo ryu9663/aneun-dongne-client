@@ -18,7 +18,11 @@ export const Home = () => {
   const [prevInfo, setPrevInfo] = useState();
   const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
-  const [pickPoint, radius, numOfRows] = usePlacesStore(state => [state.pickPoint, state.radius, state.numOfRows]);
+  const [pickPoint, radius_KM, numOfRows] = usePlacesStore(state => [
+    state.pickPoint,
+    state.radius_KM,
+    state.numOfRows
+  ]);
 
   const {
     data: places,
@@ -29,7 +33,7 @@ export const Home = () => {
       numOfRows,
       mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
       mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
-      radius
+      radius_KM
     },
     currentPosition
   );

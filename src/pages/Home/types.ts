@@ -2,7 +2,7 @@ export interface PlaceParams {
   numOfRows: number;
   mapX?: number;
   mapY?: number;
-  radius: number;
+  radius_KM: number;
 }
 export interface PlaceType {
   addr1: string;
