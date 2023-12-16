@@ -1,6 +1,6 @@
 {
   "name": "aneun-dongne-client",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",
