@@ -5,6 +5,7 @@ import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
+import { Skeleton } from 'pages/Home/components/PlaceList/Place/Skeleton';
 
 interface Props {
   places: PlaceType[];
@@ -14,8 +15,9 @@ interface Props {
   setPrevInfo: any;
 
   //!
+  isLoading: boolean;
 }
-const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
+const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => {
   const onHoverCard = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
@@ -39,9 +41,17 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo }: Props) => {
   return (
     <div className={styles.wrapper}>
       <DragSlider hasCloudyArea>
-        {places.map(({ title, addr1, firstimage, contentid }) => (
-          <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
-        ))}
+        {isLoading ? (
+          <>
+            {new Array(10).fill(0).map(e => (
+              <Skeleton />
+            ))}
+          </>
+        ) : (
+          places.map(({ title, addr1, firstimage }) => (
+            <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
+          ))
+        )}
       </DragSlider>
     </div>
   );

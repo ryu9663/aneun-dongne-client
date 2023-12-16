@@ -51,7 +51,15 @@ export const Home = () => {
             />
           </div>
           <div className={styles.placelist_wrapper}>
-            {places && <PlaceList prevInfo={prevInfo} setPrevInfo={setPrevInfo} places={places} map={map} />}
+            {places && (
+              <PlaceList
+                prevInfo={prevInfo}
+                setPrevInfo={setPrevInfo}
+                places={places}
+                map={map}
+                isLoading={isLoading}
+              />
+            )}
           </div>
         </>
       )}
