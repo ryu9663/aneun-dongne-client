@@ -1,9 +1,9 @@
 @use 'src/styles/libs' as *;
 
-.wrapper {
-  color: black;
-
-  border: 1px solid gray;
+.card_wrapper {
+  border: 1px solid $BLUISH-GRAY-500;
+  border-radius: 10px;
+  color: $BLUISH-GRAY-700;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -11,41 +11,34 @@
   align-items: center;
   width: 100px;
   height: 180px;
-  &_title {
+  .card_title {
     margin-bottom: 10px;
   }
-  &_img {
+  .card_img {
     width: 80px;
     height: 80px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &:hover {
+    cursor: grab;
+  }
+  &:active {
+    cursor: grabbing;
   }
 
   @include desktop {
-    color: black;
-
-    border: 1px solid gray;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 300px;
     min-width: 250px;
-    &_title {
+    .card_title {
       margin-bottom: 10px;
     }
-    &_img {
+    .card_img {
       width: 200px;
       height: 200px;
-    }
-
-    &_button {
-      padding: 10px;
-      border-radius: 10px;
-
-      color: black;
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 }
