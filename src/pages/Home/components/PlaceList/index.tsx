@@ -63,7 +63,7 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
               firstimage={firstimage}
               onMouseEnter={onHoverCard}
               key={title + addr1 + firstimage}
-              onMouseLeave={() => {}}
+              onMouseLeave={onUnHoverCard}
             />
           )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>
         )}
