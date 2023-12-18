@@ -22,6 +22,11 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
   const WrapperRef = useRef<HTMLDivElement>(null);
   const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
 
+  const onUnHoverCard = () => {
+    if (prevInfo) {
+      removeInfo(prevInfo);
+    }
+  };
   const onHoverCard = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
@@ -35,7 +40,13 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
       alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
     }
   };
+  // const clickedCards = places?.find(place => place.title === '강남');
 
+  // if (clickedCards) {
+  //   setPrevInfo(showSelectedPlacesInfo([clickedCards], map.current));
+  // } else {
+  //   alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
+  // }
   useEffect(() => {
     return () => {
       prevInfo && removeInfo(prevInfo);
@@ -53,7 +64,13 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
           </>
         ) : (
           places?.map(({ title, addr1, firstimage }) => (
-            <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
+            <Place
+              title={title}
+              firstimage={firstimage}
+              onMouseEnter={onHoverCard}
+              key={title + addr1 + firstimage}
+              onMouseLeave={() => {}}
+            />
           )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>
         )}
       </DragSlider>

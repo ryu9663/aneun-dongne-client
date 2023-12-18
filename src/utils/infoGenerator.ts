@@ -1,12 +1,12 @@
-const style = 'text-align:center;padding:6px 0;';
+import styles from './infoGenerator.module.scss';
 
 export const infoWindowGenerator = (content: string) => {
-  return `<div style=${style}>${content}</div>`;
+  return `<div class=${styles.info_window}>${content}</div>`;
 };
 
-export const photoInfoWindowGenerator = (title: string, img: string) => {
-  return `<div style="width: 200px">
-  <div class="info">
+export const mapInfoWindowGenerator = (title: string, img: string) => {
+  return `<div class=${styles.info_wrapper}>
+  <div class=${styles.info}>
       <div class="title">
       ${title}
 

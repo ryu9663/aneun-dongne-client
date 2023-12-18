@@ -35,7 +35,9 @@ const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers
     state.radius_KM
   ]);
 
-  useEffect(() => setMap(kakaoMap), [kakaoMap]);
+  useEffect(() => {
+    setMap(kakaoMap);
+  }, [kakaoMap]);
 
   useEffect(() => {
     if (kakaoMap.current) {

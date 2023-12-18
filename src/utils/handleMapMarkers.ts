@@ -1,4 +1,4 @@
-import { infoWindowGenerator, photoInfoWindowGenerator } from 'utils/infoGenerator';
+import { infoWindowGenerator, mapInfoWindowGenerator } from 'utils/infoGenerator';
 import { MarkerType, PlaceType } from 'pages/Home/types';
 import { PositionType } from './hooks/useCurrentPosition';
 import { OTHER_MARKER_IMAGE } from 'utils/constant';
@@ -20,7 +20,7 @@ export const addZoomControler = (map: any) => {
 export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
+      hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title,
       contentid
@@ -53,7 +53,7 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
   //타입지정
   const markers = selectedPlace
     .map(({ title, mapy, mapx, firstimage }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
+      hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
@@ -86,7 +86,7 @@ export const removeMarkers = (markers: any[], setPrevMarkers: any) => {
 export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
   const infowindow = places
     .map(({ title, mapy, mapx, firstimage }) => ({
-      hoverBox: photoInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
+      hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
       latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
@@ -119,5 +119,12 @@ export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => v
     const latlng = map.getCenter();
 
     setPickPoint({ lat: latlng.Ma, lon: latlng.La });
+  });
+};
+
+export const removeImageTitle = () => {
+  const allImgsWithPresentationRole = document.querySelectorAll('img[role="presentation"]');
+  allImgsWithPresentationRole.forEach(img => {
+    img.removeAttribute('title');
   });
 };
