@@ -7,7 +7,7 @@ import { useCallback } from 'react';
 import { debounce } from 'lodash-es';
 
 export const SearchOption = () => {
-  const [setStoreRadius_KM, setNumOfRows] = usePlacesStore(state => [state.setRadius_KM, state.setNumOfRows]);
+  const [setStoreRadius_KM, setNumOfPlaces] = usePlacesStore(state => [state.setRadius_KM, state.setNumOfPlaces]);
   const [radius_KM, setRadius_KM] = useDebounce(500);
 
   const handleDebounceRadius = useCallback(
@@ -26,7 +26,7 @@ export const SearchOption = () => {
             fontWeight={400}
             name="관광지 검색 수"
             size="normal"
-            onChange={numOfPlaces => setNumOfRows(numOfPlaces)}
+            onChange={numOfPlaces => setNumOfPlaces(numOfPlaces)}
             options={[
               { name: '10개', value: 10 },
               { name: '20개', value: 20 },
