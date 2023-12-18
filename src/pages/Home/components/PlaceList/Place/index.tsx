@@ -5,16 +5,21 @@ import { useImageLoaded } from 'utils/hooks/useImageLoaded';
 interface PlaceProps {
   title: string;
   firstimage: string;
+  onMouseLeave: (title: string) => void;
   onMouseEnter: (title: string) => void;
 }
 
-const Place = ({ title, firstimage, onMouseEnter }: PlaceProps) => {
+const Place = ({ title, firstimage, onMouseEnter, onMouseLeave }: PlaceProps) => {
   const imageLoaded = useImageLoaded(firstimage);
 
   return (
     <>
       {imageLoaded ? (
-        <button className={styles.card_wrapper} onMouseEnter={() => onMouseEnter(title)}>
+        <button
+          className={styles.card_wrapper}
+          onMouseEnter={() => onMouseEnter(title)}
+          onMouseLeave={() => onMouseLeave(title)}
+        >
           <>
             <span className={styles.card_title}>{title}</span>
 

@@ -22,6 +22,11 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
   const WrapperRef = useRef<HTMLDivElement>(null);
   const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
 
+  const onUnHoverCard = () => {
+    if (prevInfo) {
+      removeInfo(prevInfo);
+    }
+  };
   const onHoverCard = (title: string) => {
     if (prevInfo) {
       removeInfo(prevInfo);
@@ -53,7 +58,13 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
           </>
         ) : (
           places?.map(({ title, addr1, firstimage }) => (
-            <Place title={title} firstimage={firstimage} onMouseEnter={onHoverCard} key={title + addr1 + firstimage} />
+            <Place
+              title={title}
+              firstimage={firstimage}
+              onMouseEnter={onHoverCard}
+              key={title + addr1 + firstimage}
+              onMouseLeave={onUnHoverCard}
+            />
           )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>
         )}
       </DragSlider>

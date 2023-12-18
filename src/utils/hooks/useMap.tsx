@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { addZoomControler, removeMarkers, makeOtherMarkers } from 'utils/handleMapMarkers';
+import { addZoomControler, removeMarkers, makeOtherMarkers, removeImageTitle } from 'utils/handleMapMarkers';
 import { MarkerType, PlaceType } from 'pages/Home/types';
 import { useEffect, useMemo, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
@@ -64,6 +64,7 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
     }
   }, [otherMarkers]);
 
+  removeImageTitle();
   return { map: kakaoMap };
 };
 
