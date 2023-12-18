@@ -40,13 +40,7 @@ const PlaceList = ({ places, map, prevInfo, setPrevInfo, isLoading }: Props) => 
       alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
     }
   };
-  // const clickedCards = places?.find(place => place.title === '강남');
 
-  // if (clickedCards) {
-  //   setPrevInfo(showSelectedPlacesInfo([clickedCards], map.current));
-  // } else {
-  //   alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
-  // }
   useEffect(() => {
     return () => {
       prevInfo && removeInfo(prevInfo);
