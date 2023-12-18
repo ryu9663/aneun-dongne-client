@@ -18,10 +18,10 @@ export const Home = () => {
   const [prevInfo, setPrevInfo] = useState();
   const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
-  const [pickPoint, radius_KM, numOfRows] = usePlacesStore(state => [
+  const [pickPoint, radius_KM, numOfPlaces] = usePlacesStore(state => [
     state.pickPoint,
     state.radius_KM,
-    state.numOfRows
+    state.numOfPlaces
   ]);
 
   const {
@@ -30,7 +30,7 @@ export const Home = () => {
     isError
   } = usePlacesQuery(
     {
-      numOfRows,
+      numOfRows: numOfPlaces,
       mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
       mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
       radius: radius_KM * 1000
