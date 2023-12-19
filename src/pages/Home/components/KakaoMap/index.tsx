@@ -44,7 +44,7 @@ const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers
     }
   }, [pickPoint]);
 
-  if (isError) return <div>error</div>;
+  if (isError) return <div>API 에러</div>;
   return (
     <article className={styles.map_wrapper}>
       {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />}
