@@ -37,7 +37,7 @@ export const Home = () => {
     },
     currentPosition
   );
-
+  console.log(places, isLoading, isError);
   return (
     <section className={styles.wrapper}>
       <>

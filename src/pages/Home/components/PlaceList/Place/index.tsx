@@ -11,7 +11,7 @@ interface PlaceProps {
 
 const Place = ({ title, firstimage, onMouseEnter, onMouseLeave }: PlaceProps) => {
   const imageLoaded = useImageLoaded(firstimage);
-  console.log('k');
+
   return (
     <>
       {imageLoaded ? (
