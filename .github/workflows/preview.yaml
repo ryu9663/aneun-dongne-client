@@ -21,9 +21,9 @@ jobs:
         run: pnpm install
       - name: access to secrets
         run: |
-          echo "REACT_APP_TOUR_API_KEY=$REACT_APP_TOUR_API_KEY" >> .env
+          echo "VITE_APP_TOUR_API_KEY=$VITE_APP_TOUR_API_KEY" >> .env
         env:
-          REACT_APP_TOUR_API_KEY: ${{secrets.REACT_APP_TOUR_API_KEY}}
+          VITE_APP_TOUR_API_KEY: ${{secrets.VITE_APP_TOUR_API_KEY}}
       - name: Build
         run: pnpm run build
       - name: Run Test

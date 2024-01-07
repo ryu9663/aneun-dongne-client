@@ -1,7 +1,7 @@
-import { infoWindowGenerator, mapInfoWindowGenerator } from 'utils/infoGenerator';
-import { MarkerType, PlaceType } from 'pages/Home/types';
+import { infoWindowGenerator, mapInfoWindowGenerator } from '@/utils/infoGenerator';
+import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { PositionType } from './hooks/useCurrentPosition';
-import { OTHER_MARKER_IMAGE } from 'utils/constant';
+import { OTHER_MARKER_IMAGE } from '@/utils/constant';
 
 const kakao = window.kakao;
 

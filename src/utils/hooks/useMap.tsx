@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { addZoomControler, removeMarkers, makeOtherMarkers, removeImageTitle } from 'utils/handleMapMarkers';
-import { MarkerType, PlaceType } from 'pages/Home/types';
+import { addZoomControler, removeMarkers, makeOtherMarkers, removeImageTitle } from '@/utils/handleMapMarkers';
+import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { useEffect, useMemo, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
 

@@ -1,4 +1,4 @@
-import { Loading } from 'pages/Home/Loading';
+import { Loading } from '@/pages/Home/Loading';
 import styles from './index.module.scss';
 
 export const KakaoMapSkeleton = () => {

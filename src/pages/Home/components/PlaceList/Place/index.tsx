@@ -1,6 +1,6 @@
-import { PlaceSkeleton } from 'pages/Home/components/PlaceList/Place/PlaceSkeleton';
+import { PlaceSkeleton } from '@/pages/Home/components/PlaceList/Place/PlaceSkeleton';
 import styles from './index.module.scss';
-import { useImageLoaded } from 'utils/hooks/useImageLoaded';
+import { useImageLoaded } from '@/utils//hooks/useImageLoaded';
 
 interface PlaceProps {
   title: string;

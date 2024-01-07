@@ -1,12 +1,12 @@
-import KakaoMap from 'pages/Home/components/KakaoMap';
-import useCurrentPosition from 'utils/hooks/useCurrentPosition';
+import KakaoMap from '@/pages/Home/components/KakaoMap';
+import useCurrentPosition from '@/utils//hooks/useCurrentPosition';
 import styles from './index.module.scss';
 import { useState } from 'react';
 import { MarkerType } from './types';
 import PlaceList from './components/PlaceList';
-import { usePlacesQuery } from 'pages/Home/hooks/usePlacesQuery';
-import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
-import { KakaoMapSkeleton } from 'pages/Home/components/KakaoMap/KakaoMapSkeleton';
+import { usePlacesQuery } from '@/pages/Home/hooks/usePlacesQuery';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { KakaoMapSkeleton } from '@/pages/Home/components/KakaoMap/KakaoMapSkeleton';
 
 export interface PositionType {
   lat: number;
