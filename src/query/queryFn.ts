@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PlaceParams } from '../@/pages/Home/types';
+import { PlaceParams } from '../pages/Home/types';
 
 export const getPlaces = async (params: PlaceParams): Promise<any> => {
   const { numOfRows, mapX, mapY, radius } = params;

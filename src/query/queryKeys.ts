@@ -1,4 +1,4 @@
-import { PlaceParams } from '../@/pages/Home/types';
+import { PlaceParams } from '@/pages/Home/types';
 
 const PLACES = 'places';
 const queryKeys = {

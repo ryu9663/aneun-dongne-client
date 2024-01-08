@@ -77,13 +77,12 @@ export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => 
   return markers[0];
 };
 
-export const removeMarkers = (markers: any[], setPrevMarkers: any) => {
+export const removeMarkers = (markers: any[]) => {
   //markerType필요함
 
   markers.forEach(marker => marker.setMap(null)); //setMap이 들어가있는지 타입검사 필요
-  // setPrevMarkers([]);
 };
-export const getMarkersInfowindow = (places: PlaceType[], map: any) => {
+export const getMarkersInfowindow = (places: PlaceType[]) => {
   const infowindow = places
     .map(({ title, mapy, mapx, firstimage }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
