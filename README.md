@@ -1,11 +1,11 @@
 [안녕 동네](https://hivillage.wnsdufdl.com/)
 
-### 개발환경세팅
-
-.env에 
-- 카카오맵 api key
-- tourAPI key
-- tourAPI endpoint
-
-세가지 필요함.
-
+- react
+- typescript
+- zustand
+- sass
+- [junyeol-components](https://www.npmjs.com/package/junyeol-components)
+- kakao-map
+- [관광공사api](https://www.data.go.kr/data/15101578/openapi.do)
+- vite
+- pnpm
