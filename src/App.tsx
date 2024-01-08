@@ -1,8 +1,8 @@
-import Alert from 'components/Alert';
-import { Home } from 'pages/Home';
+import Alert from '@/components/Alert';
+import { Home } from '@/pages/Home';
 import { useState } from 'react';
-import 'styles/_global.scss';
-import { detectDevice } from 'utils/detectDevice';
+import '@/styles/_global.scss';
+import { detectDevice } from '@/utils//detectDevice';
 
 function App() {
   const device = detectDevice();

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Input, DropdownTag, Selectbox } from 'junyeol-components';
 import styles from './index.module.scss';
-import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
-import { useDebounce } from 'utils/hooks/useDebounce';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { useDebounce } from '@/utils//hooks/useDebounce';
 import { useCallback } from 'react';
 import { debounce } from 'lodash-es';
 

@@ -5,7 +5,9 @@ export const getPlaces = async (params: PlaceParams): Promise<any> => {
   const { numOfRows, mapX, mapY, radius } = params;
   const data: Promise<any> = await axios
     .get(
-      `${process.env.REACT_APP_TOUR_API_URL}/locationBasedList1?ServiceKey=${process.env.REACT_APP_TOUR_API_KEY}&_type=json`,
+      `${import.meta.env.VITE_APP_TOUR_API_URL}/locationBasedList1?ServiceKey=${
+        import.meta.env.VITE_APP_TOUR_API_KEY
+      }&_type=json`,
       {
         params: {
           MobileOS: 'ETC',

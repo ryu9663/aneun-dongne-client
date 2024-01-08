@@ -2,12 +2,12 @@
 import { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { PositionType } from '../../index';
-import { onDragMap } from '../../../../utils/handleMapMarkers';
-import { MarkerType, PlaceType } from 'pages/Home/types';
-import useMap from 'utils/hooks/useMap';
-import { Loading } from 'pages/Home/Loading';
-import { SearchOption } from 'pages/Home/components/KakaoMap/SearchOption';
-import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
+import { onDragMap } from '@/utils/handleMapMarkers';
+import { MarkerType, PlaceType } from '@/pages/Home/types';
+import useMap from '@/utils//hooks/useMap';
+import { Loading } from '@/pages/Home/Loading';
+import { SearchOption } from '@/pages/Home/components/KakaoMap/SearchOption';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 
 export interface Props {
   currentPosition?: PositionType;

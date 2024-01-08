@@ -1,12 +1,12 @@
-import { PlaceType } from 'pages/Home/types';
+import { PlaceType } from '@/pages/Home/types';
 import { useEffect, useRef } from 'react';
-import { removeInfo, showSelectedPlacesInfo } from 'utils/handleMapMarkers';
+import { removeInfo, showSelectedPlacesInfo } from '@/utils/handleMapMarkers';
 
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
-import { PlaceSkeleton } from 'pages/Home/components/PlaceList/Place/PlaceSkeleton';
-import { usePlacesStore } from 'pages/Home/hooks/usePlacesStore';
+import { PlaceSkeleton } from '@/pages/Home/components/PlaceList/Place/PlaceSkeleton';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 
 interface Props {
   places?: PlaceType[];
