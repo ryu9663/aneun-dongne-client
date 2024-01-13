@@ -49,7 +49,7 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
     });
   return markers;
 };
-export const showSelectedPlacesInfo = (selectedPlace: PlaceType[], map: any) => {
+export const showSelectedPlaceInfoOnMap = (selectedPlace: PlaceType[], map: any) => {
   //타입지정
   const markers = selectedPlace
     .map(({ title, mapy, mapx, firstimage }) => ({

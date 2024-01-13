@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
 import { PositionType } from '../../index';
-import { onDragMap } from '@/utils/handleMapMarkers';
 import { MarkerType, PlaceType } from '@/pages/Home/types';
 import useMap from '@/utils//hooks/useMap';
 import { Loading } from '@/pages/Home/Loading';
@@ -19,30 +18,17 @@ export interface Props {
   isLoading: boolean;
 }
 
-const KakaoMap = ({ currentPosition, places, setMap, prevMarkers, setPrevMarkers, isError, isLoading }: Props) => {
+const KakaoMap = ({ currentPosition, places, setMap, isError, isLoading }: Props) => {
   const mapRef = useRef(null);
 
   const { map: kakaoMap } = useMap(mapRef, {
     otherMarkers: places,
-    defaultPosition: currentPosition,
-    prevMarkers,
-    setPrevMarkers
+    defaultPosition: currentPosition
   });
 
-  const [pickPoint, setPickPoint, radius_KM, numOfPlaces] = usePlacesStore(state => [
-    state.pickPoint,
-    state.setPickPoint,
-    state.radius_KM,
-    state.numOfPlaces
-  ]);
+  const [radius_KM, numOfPlaces] = usePlacesStore(state => [state.radius_KM, state.numOfPlaces]);
 
   useEffect(() => setMap(kakaoMap), [kakaoMap]);
-
-  useEffect(() => {
-    if (kakaoMap.current) {
-      setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
-    }
-  }, [pickPoint]);
 
   if (isError) return <div>API 에러</div>;
   return (

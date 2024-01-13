@@ -1,21 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { addZoomControler, removeMarkers, makeOtherMarkers, removeImageTitle } from '@/utils/handleMapMarkers';
+import {
+  addZoomControler,
+  removeMarkers,
+  makeOtherMarkers,
+  removeImageTitle,
+  onDragMap
+} from '@/utils/handleMapMarkers';
 import { MarkerType, PlaceType } from '@/pages/Home/types';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { PositionType } from './useCurrentPosition';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 
 interface MapParams {
   otherMarkers?: PlaceType[];
   defaultPosition?: PositionType;
-  prevMarkers?: MarkerType[];
-  setPrevMarkers?: (markers: MarkerType[]) => void;
   defaultMarker?: boolean;
 }
-const useMap = (mapRef: any, mapParams: MapParams) => {
+const useMap = (mapRef: any, { otherMarkers, defaultPosition, defaultMarker = false }: MapParams) => {
   const kakao = window.kakao;
   const kakaoMap = useRef();
+  const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
 
-  const { otherMarkers, defaultPosition, prevMarkers, setPrevMarkers, defaultMarker = false } = mapParams;
+  const [pickPoint, setPickPoint] = usePlacesStore(state => [state.pickPoint, state.setPickPoint]);
+
   const center = useMemo(
     () =>
       new kakao.maps.LatLng(
@@ -63,6 +70,13 @@ const useMap = (mapRef: any, mapParams: MapParams) => {
       setPrevMarkers(makeOtherMarkers(kakaoMap.current, otherMarkers || []));
     }
   }, [otherMarkers]);
+
+  useEffect(() => {
+    if (kakaoMap.current) {
+      prevMarkers && removeMarkers(prevMarkers);
+      setPickPoint && onDragMap(kakaoMap.current, setPickPoint);
+    }
+  }, [pickPoint]);
 
   removeImageTitle();
   return { map: kakaoMap };

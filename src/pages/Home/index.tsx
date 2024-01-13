@@ -2,7 +2,6 @@ import KakaoMap from '@/pages/Home/components/KakaoMap';
 import useCurrentPosition from '@/utils//hooks/useCurrentPosition';
 import styles from './index.module.scss';
 import { useState } from 'react';
-import { MarkerType } from './types';
 import PlaceList from './components/PlaceList';
 import { usePlacesQuery } from '@/pages/Home/hooks/usePlacesQuery';
 import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
@@ -15,8 +14,6 @@ export interface PositionType {
 
 export const Home = () => {
   const { loading: currentPositionLoading, position: currentPosition } = useCurrentPosition();
-  const [prevInfo, setPrevInfo] = useState();
-  const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
   const [map, setMap] = useState();
   const [pickPoint, radius_KM, numOfPlaces] = usePlacesStore(state => [
     state.pickPoint,
@@ -50,21 +47,11 @@ export const Home = () => {
               currentPosition={currentPosition}
               places={places}
               setMap={setMap}
-              prevMarkers={prevMarkers}
-              setPrevMarkers={setPrevMarkers}
             />
           )}
         </div>
         <div className={styles.placelist_wrapper}>
-          {
-            <PlaceList
-              prevInfo={prevInfo}
-              setPrevInfo={setPrevInfo}
-              places={places}
-              map={map}
-              isLoading={currentPositionLoading || isLoading}
-            />
-          }
+          {<PlaceList places={places} map={map} isLoading={currentPositionLoading || isLoading} />}
         </div>
       </>
     </section>
