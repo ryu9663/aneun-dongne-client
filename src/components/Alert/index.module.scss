@@ -4,32 +4,32 @@
   &_wrapper {
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
     z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.5);
   }
   &_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
     padding: 20px;
-    border-radius: 30px;
+    font-weight: bold;
     text-align: center;
+    background: white;
+    border-radius: 30px;
+    transform: translate(-50%, -50%);
   }
   &_button {
     width: fit-content;
+    padding: 10px 20px;
     background-color: white;
     border: 1px gray solid;
-    padding: 10px 20px;
     border-radius: 5px;
   }
 }

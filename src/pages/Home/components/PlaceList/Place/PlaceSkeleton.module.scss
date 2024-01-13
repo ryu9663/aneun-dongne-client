@@ -28,20 +28,19 @@
   }
 }
 .card_wrapper {
-  box-shadow: 10px 5px 5px $BLUISH-GRAY-100;
-  border-radius: 10px;
-
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100px;
   height: 180px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px $BLUISH-GRAY-100;
 
   @include desktop {
-    min-height: 300px;
     min-width: 250px;
+    min-height: 300px;
   }
 }
 .card_loading {
@@ -50,16 +49,16 @@
   gap: 10px;
   align-items: center;
   &_title {
-    border-radius: 5px;
     width: 100px;
     height: 20px;
+    border-radius: 5px;
     @include skeleton;
   }
   &_img {
-    border-radius: 5px;
     width: 80px;
     height: 80px;
     margin-bottom: 10px;
+    border-radius: 5px;
     -webkit-animation: skeleton-gradient 1.8s infinite ease-in-out;
     animation: skeleton-gradient 1.8s infinite ease-in-out;
   }

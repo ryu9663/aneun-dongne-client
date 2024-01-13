@@ -1,16 +1,16 @@
 @use 'src/styles/libs' as *;
 
 .card_wrapper {
-  box-shadow: 10px 5px 5px $BLUISH-GRAY-100;
-  border-radius: 10px;
-  color: $BLUISH-GRAY-700;
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100px;
   height: 180px;
+  padding: 10px;
+  color: $BLUISH-GRAY-700;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px $BLUISH-GRAY-100;
   .card_title {
     margin-bottom: 10px;
   }
@@ -40,8 +40,8 @@
   }
 
   @include desktop {
-    min-height: 300px;
     min-width: 250px;
+    min-height: 300px;
     .card_title {
       margin-bottom: 10px;
     }

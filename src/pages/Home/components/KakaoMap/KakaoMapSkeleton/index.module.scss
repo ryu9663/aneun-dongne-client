@@ -1,6 +1,7 @@
 @use 'src/styles/libs' as *;
 .map_wrapper {
   @include skeleton;
+
   width: 100%;
   height: 100%;
 }
