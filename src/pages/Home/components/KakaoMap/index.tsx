@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { PositionType } from '../../index';
 import { MarkerType, PlaceType } from '@/pages/Home/types';

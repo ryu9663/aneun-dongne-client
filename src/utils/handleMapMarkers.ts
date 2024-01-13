@@ -40,6 +40,7 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
 
       kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
       kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
+      kakao.maps.event.addListener(map, 'bounds_changed', () => infowindow.close());
       kakao.maps.event.addListener(marker, 'click', () =>
         window.open(
           `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${place.title}`
