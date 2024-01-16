@@ -38,11 +38,11 @@ const PlaceList = ({ places, map, isLoading }: Props) => {
     <div className={styles.wrapper} ref={WrapperRef}>
       <DragSlider hasCloudyArea hideScrollbar={isLoading}>
         {isLoading ? (
-          <>
+          <div data-testid="placelist-skeleton-ui">
             {new Array(Math.floor((WrapperRef.current?.clientWidth || 2000) / 200)).fill(0).map((_, i) => (
               <PlaceSkeleton key={i} />
             ))}
-          </>
+          </div>
         ) : (
           places?.map(({ title, addr1, firstimage }) => (
             <Place
