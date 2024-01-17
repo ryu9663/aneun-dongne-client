@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://hivillage.wnsdufdl.com/sitemap.xml
