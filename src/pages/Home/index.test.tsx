@@ -6,8 +6,8 @@ describe('홈 화면', () => {
   it('위치추적 안되었을때', () => {
     render(renderAppWithRouterMatch(<Home />));
     const loadingTextForGettingPosition = screen.getByText('현재 위치를 받아오고 있습니다.');
-    const placeListSkeletonUi = screen.getByTestId('placelist-skeleton-ui');
+    const placeListSkeletonUis = screen.getAllByTestId('placelist-skeleton-ui');
     expect(loadingTextForGettingPosition).toBeInTheDocument();
-    expect(placeListSkeletonUi).toBeInTheDocument();
+    expect(placeListSkeletonUis).not.toBeNull();
   });
 });

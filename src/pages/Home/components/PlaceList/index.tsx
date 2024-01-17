@@ -37,23 +37,19 @@ const PlaceList = ({ places, map, isLoading }: Props) => {
   return (
     <div className={styles.wrapper} ref={WrapperRef}>
       <DragSlider hasCloudyArea hideScrollbar={isLoading}>
-        {isLoading ? (
-          <div data-testid="placelist-skeleton-ui">
-            {new Array(Math.floor((WrapperRef.current?.clientWidth || 2000) / 200)).fill(0).map((_, i) => (
-              <PlaceSkeleton key={i} />
-            ))}
-          </div>
-        ) : (
-          places?.map(({ title, addr1, firstimage }) => (
-            <Place
-              title={title}
-              firstimage={firstimage}
-              onMouseEnter={onHoverCard}
-              key={title + addr1 + firstimage}
-              onMouseLeave={onUnHoverCard}
-            />
-          )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>
-        )}
+        {isLoading
+          ? new Array(Math.floor((WrapperRef.current?.clientWidth || 2000) / 200))
+              .fill(0)
+              .map((_, i) => <PlaceSkeleton key={i} />)
+          : places?.map(({ title, addr1, firstimage }) => (
+              <Place
+                title={title}
+                firstimage={firstimage}
+                onMouseEnter={onHoverCard}
+                key={title + addr1 + firstimage}
+                onMouseLeave={onUnHoverCard}
+              />
+            )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>}
       </DragSlider>
     </div>
   );
