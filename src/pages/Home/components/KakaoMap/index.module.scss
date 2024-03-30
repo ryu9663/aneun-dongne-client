@@ -15,13 +15,13 @@
   top: 10px;
   left: 10px;
   z-index: 99;
+  width: 270px;
   padding: 5px;
   font-size: 16px;
   font-weight: 400;
+  word-break: keep-all;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  width: 270px;
-  word-break: keep-all;
 
   @include desktop {
     width: fit-content;
