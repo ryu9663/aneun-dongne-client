@@ -1,3 +1,5 @@
+@use 'src/styles/libs' as *;
+
 .map_wrapper {
   height: 100%;
 }
@@ -13,11 +15,23 @@
   top: 10px;
   left: 10px;
   z-index: 99;
-  padding: 3px;
+  width: 270px;
+  padding: 5px;
   font-size: 16px;
   font-weight: 400;
+  word-break: keep-all;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
+
+  @include desktop {
+    width: fit-content;
+  }
+
+  .mobile_br {
+    @include desktop {
+      display: none;
+    }
+  }
 }
 
 .info_window {
