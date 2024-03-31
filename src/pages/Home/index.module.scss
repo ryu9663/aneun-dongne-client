@@ -1,5 +1,3 @@
-@use 'src/styles/libs' as *;
-
 .wrapper {
   position: relative;
   display: flex;
@@ -12,8 +10,6 @@
 }
 
 .placelist_wrapper {
-  @include desktop {
-    width: 100vw;
-    height: 380px;
-  }
+  width: 100vw;
+  height: 380px;
 }
