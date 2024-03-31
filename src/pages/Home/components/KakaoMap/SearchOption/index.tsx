@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Input, DropdownTag, Selectbox } from 'junyeol-components';
 import styles from './index.module.scss';
 import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 import { useDebounce } from '@/utils//hooks/useDebounce';
 import { useCallback } from 'react';
 import { debounce } from 'lodash-es';
-import { Selectbox, DropdownTag, Input } from 'junyeol-components';
 
 export const SearchOption = () => {
   const [setStoreRadius_KM, setNumOfPlaces] = usePlacesStore(state => [state.setRadius_KM, state.setNumOfPlaces]);
@@ -26,7 +26,7 @@ export const SearchOption = () => {
             fontWeight={400}
             name="관광지 검색 수"
             size="normal"
-            onChange={(numOfPlaces: number) => setNumOfPlaces(numOfPlaces)}
+            onChange={numOfPlaces => setNumOfPlaces(numOfPlaces)}
             options={[
               { name: '10개', value: 10 },
               { name: '20개', value: 20 },
