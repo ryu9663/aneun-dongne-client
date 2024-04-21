@@ -3,17 +3,15 @@ import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { PositionType } from './hooks/useCurrentPosition';
 import { OTHER_MARKER_IMAGE } from '@/utils/constant';
 
-const kakao = window.kakao;
-
 export const openInfoWindow = (map: any, marker: any) => {
-  const infowindow = new kakao.maps.InfoWindow({
+  const infowindow = new window.kakao.maps.InfoWindow({
     content: infoWindowGenerator('내위치')
   });
   infowindow.open(map, marker);
 };
 
 export const addZoomControler = (map: any) => {
-  const zoomControl = new kakao.maps.ZoomControl();
+  const zoomControl = new window.kakao.maps.ZoomControl();
   map.addControl(zoomControl);
 };
 
@@ -21,27 +19,27 @@ export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] =>
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
-      latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
+      latlng: new window.kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title,
       contentid
     }))
 
     .map(place => {
-      const infowindow = new kakao.maps.InfoWindow({
+      const infowindow = new window.kakao.maps.InfoWindow({
         content: place.hoverBox
       });
 
-      const marker: MarkerType = new kakao.maps.Marker({
+      const marker: MarkerType = new window.kakao.maps.Marker({
         map,
         position: place.latlng,
         title: place.hoverBox,
-        image: new kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new kakao.maps.Size(24, 35))
+        image: new window.kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new window.kakao.maps.Size(24, 35))
       });
 
-      kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
-      kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-      kakao.maps.event.addListener(map, 'bounds_changed', () => infowindow.close());
-      kakao.maps.event.addListener(marker, 'click', () =>
+      new window.kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
+      new window.kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
+      new window.kakao.maps.event.addListener(map, 'bounds_changed', () => infowindow.close());
+      new window.kakao.maps.event.addListener(marker, 'click', () =>
         window.open(
           `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${place.title}`
         )
@@ -55,20 +53,20 @@ export const showSelectedPlaceInfoOnMap = (selectedPlace: PlaceType[], map: any)
   const markers = selectedPlace
     .map(({ title, mapy, mapx, firstimage }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
-      latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
+      latlng: new window.kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
 
     .map(place => {
-      const infowindow = new kakao.maps.InfoWindow({
+      const infowindow = new window.kakao.maps.InfoWindow({
         content: place.hoverBox
       });
 
-      const marker = new kakao.maps.Marker({
+      const marker = new window.kakao.maps.Marker({
         map,
         position: place.latlng,
         title: place.hoverBox,
-        image: new kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new kakao.maps.Size(24, 35))
+        image: new window.kakao.maps.MarkerImage(OTHER_MARKER_IMAGE, new window.kakao.maps.Size(24, 35))
       });
       marker.setMap(null);
       infowindow.open(map, marker);
@@ -87,12 +85,12 @@ export const getMarkersInfowindow = (places: PlaceType[]) => {
   const infowindow = places
     .map(({ title, mapy, mapx, firstimage }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
-      latlng: new kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
+      latlng: new window.kakao.maps.LatLng(parseFloat(mapy), parseFloat(mapx)),
       title
     }))
 
     .map(place => {
-      const infowindow = new kakao.maps.InfoWindow({
+      const infowindow = new window.kakao.maps.InfoWindow({
         content: place.hoverBox
       });
 
@@ -107,7 +105,7 @@ export const removeInfo = (infowindow: { close: () => void }) => {
 
 // onClick은 쓰이진 않지만 우선 남겨둠
 export const onKakaoMapClick = (map: any, setPickPoint: (position?: PositionType) => void) => {
-  kakao.maps.event.addListener(map, 'click', (e: { latLng: any }) => {
+  new window.kakao.maps.event.addListener(map, 'click', (e: { latLng: any }) => {
     const latlng = { lat: e.latLng.Ma, lon: e.latLng.La };
 
     setPickPoint(latlng);
@@ -115,7 +113,7 @@ export const onKakaoMapClick = (map: any, setPickPoint: (position?: PositionType
 };
 
 export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => void) => {
-  kakao.maps.event.addListener(map, 'dragend', () => {
+  new window.kakao.maps.event.addListener(map, 'dragend', () => {
     const latlng = map.getCenter();
 
     setPickPoint({ lat: latlng.Ma, lon: latlng.La });
