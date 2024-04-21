@@ -3,7 +3,6 @@ import { PlaceParams } from '../pages/Home/types';
 
 export const getPlaces = async (params: PlaceParams): Promise<any> => {
   const { numOfRows, mapX, mapY, radius } = params;
-  console.log(params);
   const data: Promise<any> = await axios
     .get(
       `${import.meta.env.VITE_APP_TOUR_API_URL}/locationBasedList1?ServiceKey=${
@@ -40,6 +39,6 @@ export const getPlaces = async (params: PlaceParams): Promise<any> => {
     .then(res => res.data)
 
     .catch(err => console.log(err));
-  console.log(data);
+
   return data;
 };

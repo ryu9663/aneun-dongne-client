@@ -31,6 +31,7 @@ const useMap = (mapRef: any, { otherMarkers, defaultPosition, defaultMarker = fa
       ),
     [defaultPosition, kakao.maps.LatLng]
   );
+
   const option = useMemo(
     () => ({
       center,

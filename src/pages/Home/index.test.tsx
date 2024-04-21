@@ -1,4 +1,4 @@
-import { Home } from '@/pages/Home';
+import { Home } from '@/pages/Home/index2';
 import { renderAppWithRouterMatch } from '@/utils/test/renderWidthQuery';
 import { render, screen } from '@testing-library/react';
 
