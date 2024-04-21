@@ -1,11 +1,10 @@
-import KakaoMap from '@/pages/Home/components/KakaoMap';
 import useCurrentPosition from '@/utils//hooks/useCurrentPosition';
 import styles from './index.module.scss';
-import { useState } from 'react';
-import PlaceList from './components/PlaceList';
-import { usePlacesQuery } from '@/pages/Home/hooks/usePlacesQuery';
-import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 import { KakaoMapSkeleton } from '@/pages/Home/components/KakaoMap/KakaoMapSkeleton';
+import { HomeWithPosition } from '@/pages/Home/components/HomeWithPosition';
+import { CustomSuspense } from '@/components/CustomSuspense';
+import { Suspense } from 'react';
+import { Loading } from '@/pages/Home/Loading';
 
 export interface PositionType {
   lat: number;
@@ -13,47 +12,17 @@ export interface PositionType {
 }
 
 export const Home = () => {
-  const { loading: currentPositionLoading, position: currentPosition } = useCurrentPosition();
-  const [map, setMap] = useState();
-  const [pickPoint, radius_KM, numOfPlaces] = usePlacesStore(state => [
-    state.pickPoint,
-    state.radius_KM,
-    state.numOfPlaces
-  ]);
+  const { loading, position } = useCurrentPosition();
 
-  const {
-    data: places,
-    isLoading,
-    isError
-  } = usePlacesQuery(
-    {
-      numOfRows: numOfPlaces,
-      mapX: pickPoint ? pickPoint.lon : currentPosition?.lon,
-      mapY: pickPoint ? pickPoint.lat : currentPosition?.lat,
-      radius: radius_KM * 1000
-    },
-    currentPosition
-  );
   return (
     <section className={styles.wrapper}>
-      <>
-        <div className={styles.kakaomap_wrapper}>
-          {currentPositionLoading ? (
-            <KakaoMapSkeleton />
-          ) : (
-            <KakaoMap
-              isError={isError}
-              isLoading={isLoading}
-              currentPosition={currentPosition}
-              places={places}
-              setMap={setMap}
-            />
-          )}
-        </div>
-        <div className={styles.placelist_wrapper}>
-          {<PlaceList places={places} map={map} isLoading={currentPositionLoading || isLoading} />}
-        </div>
-      </>
+      <div className={styles.kakaomap_wrapper}>
+        <CustomSuspense loading={loading} fallback={<KakaoMapSkeleton />}>
+          <Suspense fallback={<Loading content="주변 관광지들을 탐색중입니다." />}>
+            {position && <HomeWithPosition position={position} />}
+          </Suspense>
+        </CustomSuspense>
+      </div>
     </section>
   );
 };

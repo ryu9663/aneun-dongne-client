@@ -1,4 +1,4 @@
-import { PositionType } from '@/pages/Home';
+import { PositionType } from '@/pages/Home/index2';
 import { create } from 'zustand';
 
 interface PlacesStoreProps {
