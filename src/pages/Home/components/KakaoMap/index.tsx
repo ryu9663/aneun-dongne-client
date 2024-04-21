@@ -31,7 +31,7 @@ const KakaoMap = ({ position, places, setMap }: Props) => {
   return (
     <article className={styles.map_wrapper}>
       {/* {isLoading && <Loading content="주변 관광지들을 탐색중입니다." />} */}
-      <div ref={mapRef} className={styles.map} id={styles.map}>
+      <div ref={mapRef} className={styles.map} id={styles.map} data-testid="kakao-map">
         <h2 className={styles.map_experiment}>
           &nbsp;&nbsp;{`지도를 드래그하면 ${radius_KM}km 주변에 위치한 관광지들을 ${numOfPlaces}개 검색합니다.`}
         </h2>

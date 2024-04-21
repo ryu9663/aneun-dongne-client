@@ -9,9 +9,10 @@ interface HomeViewProps {
   position?: PositionType;
   places?: PlaceType[];
 }
+const kakao = window.kakao;
 
 export const HomeView = ({ position, places }: HomeViewProps) => {
-  const [map, setMap] = useState();
+  const [map, setMap] = useState<typeof kakao.maps.Map | null>(null);
 
   return (
     <>
