@@ -1,19 +1,19 @@
 import { PlaceType } from '@/pages/Home/types';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { removeInfo, showSelectedPlaceInfoOnMap } from '@/utils/handleMapMarkers';
 
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
+import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
 
 interface Props {
-  places?: PlaceType[];
+  places: PlaceType[];
   map: any;
 }
 const PlaceList = ({ places, map }: Props) => {
   const [prevInfo, setPrevInfo] = useState();
-  const WrapperRef = useRef<HTMLDivElement>(null);
-  // const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
+  const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
 
   const onUnHoverCard = () => {
     if (prevInfo) {
@@ -32,24 +32,22 @@ const PlaceList = ({ places, map }: Props) => {
   };
 
   return (
-    <div className={styles.wrapper} ref={WrapperRef}>
-      <DragSlider hasCloudyArea>
-        {/* {isLoading
-          ? new Array(Math.floor((WrapperRef.current?.clientWidth || 2000) / 200))
-              .fill(0)
-              .map((_, i) => <PlaceSkeleton key={i} />)
-          : */}
-        {places?.map(({ title, addr1, firstimage }) => (
-          <Place
-            title={title}
-            firstimage={firstimage}
-            onMouseEnter={onHoverCard}
-            key={title + addr1 + firstimage}
-            onMouseLeave={onUnHoverCard}
-          />
-        ))}
-        {/* )) || <span>{radius_KM}KM 내에 관광지가 없습니다.</span>} */}
-      </DragSlider>
+    <div className={styles.placelist_wrapper}>
+      {places.length ? (
+        <DragSlider>
+          {places.map(({ title, addr1, firstimage }) => (
+            <Place
+              title={title}
+              firstimage={firstimage}
+              onMouseEnter={onHoverCard}
+              key={title + addr1 + firstimage}
+              onMouseLeave={onUnHoverCard}
+            />
+          ))}
+        </DragSlider>
+      ) : (
+        <div className={styles.no_result}>주변에 {radius_KM}km 이내에 관광지가 없습니다.</div>
+      )}
     </div>
   );
 };
