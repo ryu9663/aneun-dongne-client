@@ -18,7 +18,7 @@ export const HomeView = ({ position, places, isLoading }: HomeViewProps) => {
 
   return (
     <>
-      <KakaoMap position={position} places={places} setMap={setMap} />
+      <KakaoMap position={position} places={places} setMap={setMap} isLoading={isLoading} />
       <div className={styles.placelist_wrapper}>
         {isLoading ? <PlaceListSkeleton /> : <PlaceList places={places || []} map={map} />}
       </div>
