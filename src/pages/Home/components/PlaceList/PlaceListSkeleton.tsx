@@ -4,7 +4,6 @@ import styles from './PlaceListSkeleton.module.scss';
 
 export const PlaceListSkeleton = () => {
   const skeletonWrapperRef = useRef<HTMLDivElement>(null);
-  console.log(skeletonWrapperRef.current?.clientWidth);
   return (
     <div ref={skeletonWrapperRef} className={styles.placelist_skeleton_wrapper}>
       {new Array(Math.floor((skeletonWrapperRef.current?.clientWidth || 2000) / 100)).fill(0).map((_, i) => (

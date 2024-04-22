@@ -41,7 +41,7 @@ beforeAll(() => {
   global.Image = class extends originalImage {
     constructor(width?: number, height?: number) {
       super(width, height);
-      setTimeout(() => this.onload(), 100); // onload 시뮬레이션
+      setTimeout(() => this.onload(), 10); // onload 시뮬레이션
     }
     onload = vi.fn();
   };
