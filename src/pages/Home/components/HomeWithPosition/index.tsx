@@ -13,11 +13,14 @@ export const HomeWithPosition = ({ position }: HomeWithPositionProps) => {
     state.radius_KM,
     state.numOfPlaces
   ]);
-  const { data: places } = usePlacesQuery({
-    numOfRows: numOfPlaces,
-    mapX: pickPoint ? pickPoint.lon : position?.lon,
-    mapY: pickPoint ? pickPoint.lat : position?.lat,
-    radius: radius_KM * 1000
-  });
-  return <HomeView places={places} position={position} />;
+  const { data: places, isLoading } = usePlacesQuery(
+    {
+      numOfRows: numOfPlaces,
+      mapX: pickPoint ? pickPoint.lon : position?.lon,
+      mapY: pickPoint ? pickPoint.lat : position?.lat,
+      radius: radius_KM * 1000
+    },
+    position
+  );
+  return <HomeView places={places} position={position} isLoading={isLoading} />;
 };
