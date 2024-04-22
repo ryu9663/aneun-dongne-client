@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import { PositionType } from '../../index';
-import { MarkerType, PlaceType } from '@/pages/Home/types';
+import { PlaceType } from '@/pages/Home/types';
 import useMap from '@/utils//hooks/useMap';
 import { SearchOption } from '@/pages/Home/components/KakaoMap/SearchOption';
 import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
@@ -12,8 +12,6 @@ export interface Props {
   position?: PositionType;
   places?: PlaceType[];
   setMap: (map: any) => void;
-  prevMarkers?: MarkerType[];
-  setPrevMarkers?: (markers: MarkerType[]) => void;
   isLoading: boolean;
 }
 

@@ -18,7 +18,7 @@ const useCurrentPosition = () => {
         sessionStorage.setItem('lon', String(position.coords.longitude));
         setPosition({ lat: position.coords.latitude, lon: position.coords.longitude });
       },
-      () => console.log('sorry no positiion available')
+      () => console.error('sorry no positiion available')
     );
   }, []);
   return { loading: !position, position };
