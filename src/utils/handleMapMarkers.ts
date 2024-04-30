@@ -15,7 +15,7 @@ export const addZoomControler = (map: any) => {
   map.addControl(zoomControl);
 };
 
-export const makeOtherMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
+export const makeMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
@@ -120,6 +120,7 @@ export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => v
   });
 };
 
+/** 스타일관련임. 뭔지 보고싶으면 이거 주석하고 마커에 5초간 호버해보셈 */
 export const removeImageTitle = () => {
   const allImgsWithPresentationRole = document.querySelectorAll('img[role="presentation"]');
   allImgsWithPresentationRole.forEach(img => {
