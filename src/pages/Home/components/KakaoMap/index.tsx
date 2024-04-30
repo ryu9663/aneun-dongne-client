@@ -19,8 +19,8 @@ const KakaoMap = ({ position, places, setMap, isLoading }: Props) => {
   const mapRef = useRef(null);
 
   const { map: kakaoMap } = useMap(mapRef, {
-    otherMarkers: places,
-    defaultPosition: position
+    places,
+    position
   });
 
   const [radius_KM, numOfPlaces] = usePlacesStore(state => [state.radius_KM, state.numOfPlaces]);
