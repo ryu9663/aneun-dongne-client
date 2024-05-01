@@ -3,7 +3,7 @@ import { addZoomControler, removeMarkers, makeMarkers, removeImageTitle, onDragM
 import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { PositionType } from './useCurrentPosition';
-import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 
 interface MapParams {
   places?: PlaceType[];
@@ -16,9 +16,9 @@ interface LatLng {
 
 const useMap = (mapRef: MutableRefObject<null>, { places, position }: MapParams) => {
   const kakao = window.kakao;
-  const kakaoMap = useRef();
+  const kakaoMap = useRef(null);
   const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
-  const [pickPoint, setPickPoint] = usePlacesStore(state => [state.pickPoint, state.setPickPoint]);
+  const [pickPoint, setPickPoint] = useQueryParamsStore(state => [state.pickPoint, state.setPickPoint]);
 
   const lat = position ? position.lat : 37.1597041;
   const lon = position ? position.lon : 128.213384;
