@@ -1,7 +1,7 @@
 import { PositionType } from '@/pages/Home';
 import { create } from 'zustand';
 
-interface PlacesStoreProps {
+interface QueryParamsStore {
   pickPoint?: PositionType;
   setPickPoint: (pickPoint?: PositionType) => void;
   radius_KM: number;
@@ -9,7 +9,7 @@ interface PlacesStoreProps {
   numOfPlaces: number;
   setNumOfPlaces: (numOfPlaces?: number) => void;
 }
-export const usePlacesStore = create<PlacesStoreProps>(set => ({
+export const useQueryParamsStore = create<QueryParamsStore>(set => ({
   pickPoint: undefined,
   setPickPoint: pickPoint => set({ pickPoint }),
   radius_KM: 10,

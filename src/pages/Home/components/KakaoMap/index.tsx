@@ -5,27 +5,27 @@ import { PositionType } from '../../index';
 import { PlaceType } from '@/pages/Home/types';
 import useMap from '@/utils//hooks/useMap';
 import { SearchOption } from '@/pages/Home/components/KakaoMap/SearchOption';
-import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 import { Loading } from '@/pages/Home/Loading';
+import { useMapStore } from '@/pages/Home/hooks/useMapStore';
 
 export interface Props {
   position?: PositionType;
   places?: PlaceType[];
-  setMap: (map: any) => void;
   isLoading: boolean;
 }
 
-const KakaoMap = ({ position, places, setMap, isLoading }: Props) => {
+const KakaoMap = ({ position, places, isLoading }: Props) => {
   const mapRef = useRef(null);
-
+  const setMapInfo = useMapStore(state => state.setMapInfo);
   const { map: kakaoMap } = useMap(mapRef, {
     places,
     position
   });
 
-  const [radius_KM, numOfPlaces] = usePlacesStore(state => [state.radius_KM, state.numOfPlaces]);
+  const [radius_KM, numOfPlaces] = useQueryParamsStore(state => [state.radius_KM, state.numOfPlaces]);
 
-  useEffect(() => setMap(kakaoMap), [kakaoMap]);
+  useEffect(() => setMapInfo(kakaoMap), [kakaoMap]);
 
   return (
     <article className={styles.map_wrapper}>

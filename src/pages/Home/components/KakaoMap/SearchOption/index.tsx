@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Input, DropdownTag, Selectbox } from 'junyeol-components';
 import styles from './index.module.scss';
-import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 import { useDebounce } from '@/utils//hooks/useDebounce';
 import { useCallback } from 'react';
 import { debounce } from 'lodash-es';
 
 export const SearchOption = () => {
-  const [setStoreRadius_KM, setNumOfPlaces] = usePlacesStore(state => [state.setRadius_KM, state.setNumOfPlaces]);
+  const [setStoreRadius_KM, setNumOfPlaces] = useQueryParamsStore(state => [state.setRadius_KM, state.setNumOfPlaces]);
   const [radius_KM, setRadius_KM] = useDebounce(500);
 
   const handleDebounceRadius = useCallback(

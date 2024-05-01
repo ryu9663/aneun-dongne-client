@@ -5,15 +5,16 @@ import { removeInfo, showSelectedPlaceInfoOnMap } from '@/utils/handleMapMarkers
 import Place from './Place';
 import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
-import { usePlacesStore } from '@/pages/Home/hooks/usePlacesStore';
+import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
+import { useMapStore } from '@/pages/Home/hooks/useMapStore';
 
 interface Props {
   places: PlaceType[];
-  map: any;
 }
-const PlaceList = ({ places, map }: Props) => {
+const PlaceList = ({ places }: Props) => {
   const [prevInfo, setPrevInfo] = useState();
-  const [radius_KM] = usePlacesStore(state => [state.radius_KM]);
+  const [radius_KM] = useQueryParamsStore(state => [state.radius_KM]);
+  const mapInfo = useMapStore(state => state.mapInfo);
 
   const onUnHoverCard = () => {
     if (prevInfo) {
@@ -25,7 +26,7 @@ const PlaceList = ({ places, map }: Props) => {
     const clickedCards = places?.find(place => place.title === title);
 
     if (clickedCards) {
-      setPrevInfo(showSelectedPlaceInfoOnMap([clickedCards], map.current));
+      setPrevInfo(showSelectedPlaceInfoOnMap([clickedCards], mapInfo.current));
     } else {
       alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
     }
