@@ -103,15 +103,6 @@ export const removeInfo = (infowindow: { close: () => void }) => {
   infowindow.close();
 };
 
-// onClick은 쓰이진 않지만 우선 남겨둠
-export const onKakaoMapClick = (map: any, setPickPoint: (position?: PositionType) => void) => {
-  new window.kakao.maps.event.addListener(map, 'click', (e: { latLng: any }) => {
-    const latlng = { lat: e.latLng.Ma, lon: e.latLng.La };
-
-    setPickPoint(latlng);
-  });
-};
-
 export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => void) => {
   new window.kakao.maps.event.addListener(map, 'dragend', () => {
     const latlng = map.getCenter();

@@ -7,6 +7,7 @@ import styles from './index.module.scss';
 import { DragSlider } from 'junyeol-components';
 import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 import { useMapStore } from '@/pages/Home/hooks/useMapStore';
+import { flushSync } from 'react-dom';
 
 interface Props {
   places: PlaceType[];
@@ -23,10 +24,13 @@ const PlaceList = ({ places }: Props) => {
   };
 
   const onHoverCard = (title: string) => {
-    const clickedCards = places?.find(place => place.title === title);
+    const hoveredCard = places?.find(place => place.title === title);
 
-    if (clickedCards) {
-      setPrevInfo(showSelectedPlaceInfoOnMap([clickedCards], mapInfo.current));
+    if (hoveredCard) {
+      const matchedInfo = showSelectedPlaceInfoOnMap([hoveredCard], mapInfo.current);
+      flushSync(() => {
+        setPrevInfo(matchedInfo);
+      });
     } else {
       alert('지도에서 찾지 못한 카드입니다. 개발자에게 문의하세요');
     }
