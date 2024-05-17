@@ -30,35 +30,36 @@ const useMap = (mapRef: MutableRefObject<null>, { places, position }: MapParams)
     level: 8
   };
 
-  useEffect(() => {
-    const initializeMapAndAddZoomControl = () => {
-      if (mapRef.current) {
-        const container = mapRef.current;
-        kakaoMap.current = new kakao.maps.Map(container, option);
-        addZoomControler(kakaoMap.current);
-      }
-    };
+  const initializeMapAndAddZoomControl = () => {
+    if (mapRef.current) {
+      const container = mapRef.current;
+      kakaoMap.current = new kakao.maps.Map(container, option);
+      addZoomControler(kakaoMap.current);
+    }
+  };
 
+  const updateMarkers = () => {
+    prevMarkers && removeMarkers(prevMarkers);
+    const newMarkers = makeMarkers(kakaoMap.current, places || []);
+    setPrevMarkers(newMarkers);
+  };
+
+  const handlePickPointChange = () => {
+    if (kakaoMap.current) {
+      prevMarkers && removeMarkers(prevMarkers);
+      onDragMap(kakaoMap.current, setPickPoint);
+    }
+  };
+
+  useEffect(() => {
     initializeMapAndAddZoomControl();
   }, [kakao.maps.Map, mapRef]);
 
   useEffect(() => {
-    const updateMarkers = () => {
-      const newMarkers = makeMarkers(kakaoMap.current, places || []);
-      setPrevMarkers(newMarkers);
-    };
-
     updateMarkers();
   }, [places]);
 
   useEffect(() => {
-    const handlePickPointChange = () => {
-      if (kakaoMap.current) {
-        prevMarkers && removeMarkers(prevMarkers);
-        onDragMap(kakaoMap.current, setPickPoint);
-      }
-    };
-
     handlePickPointChange();
   }, [pickPoint]);
 

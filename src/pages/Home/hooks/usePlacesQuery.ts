@@ -6,6 +6,8 @@ import queryKeys from '@/query/queryKeys';
 import { PositionType } from '@/pages/Home';
 
 export const usePlacesQuery = (placeParams: PlaceParams, position: PositionType) => {
+  //! TODO 여기에서 useQueryParamsStore 호출? 고민해보기
+  // const [pickPoint, radius_KM, numOfPlaces] = useQueryParamsStore(state => [..])
   const query = useQuery({
     queryKey: queryKeys.PLACES(placeParams),
     queryFn: async () => await getPlaces(placeParams),
