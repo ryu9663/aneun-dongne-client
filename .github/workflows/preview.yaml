@@ -34,11 +34,8 @@ jobs:
         id: deploy-project-to-vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-  Get-Preview-Url:
-    runs-on: ubuntu-latest
-    needs: Deploy-Preview
-    steps:
       - name: vercel-preview-url
+        if: always()
         uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
         env:
@@ -50,10 +47,6 @@ jobs:
           echo "preview_url=https://${{ steps.vercel_preview_url.outputs.preview_url }}" >> $GITHUB_ENV
           echo "${{ steps.deploy-project-to-vercel.outcome }}"
 
-  Slack:
-    runs-on: ubuntu-latest
-    needs: Get-Preview-Url
-    steps:
       - name: Set color based on outcome
         if: always()
         id: set-color
