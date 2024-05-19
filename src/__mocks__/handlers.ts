@@ -4,7 +4,7 @@ import { http, HttpResponse } from 'msw';
 const API_URL = `${import.meta.env.VITE_APP_TOUR_API_URL}/locationBasedList1`;
 
 export const handlers = [
-  http.get(API_URL, ({ request }) => {
+  http.get(API_URL, ({ request }: { request: Request }) => {
     const url = new URL(request.url);
     const _type = url.searchParams.get('_type');
     const mapX = url.searchParams.get('mapX');
