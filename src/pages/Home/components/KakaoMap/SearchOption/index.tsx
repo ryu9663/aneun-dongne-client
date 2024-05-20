@@ -19,7 +19,13 @@ export const SearchOption = () => {
 
   return (
     <div className={styles.search_options}>
-      <DropdownTag fontSize="normal" fontWeight={400} name="관광지 검색 옵션 조정" className={styles.dropdown_wrapper}>
+      <DropdownTag
+        fontSize="normal"
+        size="large"
+        fontWeight={400}
+        name="관광지 검색 옵션 조정"
+        className={styles.dropdown_wrapper}
+      >
         <div className={styles.dropdown}>
           <Selectbox
             fontSize="normal"
