@@ -7,7 +7,7 @@ import { PlaceType } from '@/pages/Home/types';
 import { renderAppWithRouterMatch } from '@/utils/test/renderWidthQuery';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-describe('위치를 모를ㅎ때', () => {
+describe('위치를 모를때', () => {
   test("위치추적 안되었을때 '현재 위치를 받아오고 있다는 문구' 노출", () => {
     render(renderAppWithRouterMatch(<Home />));
     const loadingTextForGettingPosition = screen.getByText('현재 위치를 받아오고 있습니다.');

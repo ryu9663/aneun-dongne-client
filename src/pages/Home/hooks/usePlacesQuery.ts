@@ -4,10 +4,22 @@ import { PlaceParams, PlaceType } from '@/pages/Home/types';
 import { getPlaces } from '@/query/queryFn';
 import queryKeys from '@/query/queryKeys';
 import { PositionType } from '@/pages/Home';
+import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 
-export const usePlacesQuery = (placeParams: PlaceParams, position: PositionType) => {
-  //! TODO 여기에서 useQueryParamsStore 호출? 고민해보기
-  // const [pickPoint, radius_KM, numOfPlaces] = useQueryParamsStore(state => [..])
+export const usePlacesQuery = (position: PositionType) => {
+  const [pickPoint, radius_KM, numOfPlaces] = useQueryParamsStore(state => [
+    state.pickPoint,
+    state.radius_KM,
+    state.numOfPlaces
+  ]);
+
+  const placeParams: PlaceParams = {
+    numOfRows: numOfPlaces,
+    mapX: pickPoint ? pickPoint.lon : position?.lon,
+    mapY: pickPoint ? pickPoint.lat : position?.lat,
+    radius: radius_KM * 1000
+  };
+
   const query = useQuery({
     queryKey: queryKeys.PLACES(placeParams),
     queryFn: async () => await getPlaces(placeParams),
