@@ -24,6 +24,7 @@ const Place = ({ title, firstimage, onMouseEnter, onMouseLeave }: PlaceProps) =>
             <span className={styles.card_title}>{title}</span>
 
             <img
+              draggable={false}
               className={styles.card_img}
               src={firstimage || '/images/no-image.png'}
               alt={firstimage ? title : '관광공사에 관광지의 사진이 등록되지 않았습니다.'}
