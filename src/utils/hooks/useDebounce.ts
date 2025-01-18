@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Dispatch, SetStateAction, useState, useEffect, useCallback } from 'react';
-import { debounce } from 'lodash-es';
+import debounce from 'lodash-es/debounce';
 
 export const useDebounce = (
   millisec: number = 500
