@@ -2,6 +2,9 @@ import { infoWindowGenerator, mapInfoWindowGenerator } from '@/utils/infoGenerat
 import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { PositionType } from './hooks/useCurrentPosition';
 import { OTHER_MARKER_IMAGE } from '@/utils/constant';
+import { detectDevice } from '@/utils/detectDevice';
+
+const device = detectDevice();
 
 export const openInfoWindow = (map: any, marker: any) => {
   const infowindow = new window.kakao.maps.InfoWindow({
@@ -16,6 +19,8 @@ export const addZoomControler = (map: any) => {
 };
 
 export const makeMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
+  let openedInfoWindow: any = null;
+
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
@@ -38,12 +43,25 @@ export const makeMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
 
       new window.kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
       new window.kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-      new window.kakao.maps.event.addListener(map, 'bounds_changed', () => infowindow.close());
-      new window.kakao.maps.event.addListener(marker, 'click', () =>
-        window.open(
-          `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${place.title}`
-        )
-      );
+      new window.kakao.maps.event.addListener(map, 'bounds_changed', () => device === 'PC' && infowindow.close());
+      new window.kakao.maps.event.addListener(marker, 'click', () => {
+        if (device === 'PC') {
+          window.open(
+            `https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=${place.title}`
+          );
+        } else {
+          // 이전에 열려있던 infowindow가 있다면 닫기
+          if (openedInfoWindow) {
+            openedInfoWindow.close();
+          }
+
+          // 현재 infowindow 열기
+          infowindow.open(map, marker);
+
+          // 열려 있는 infowindow 업데이트
+          openedInfoWindow = infowindow;
+        }
+      });
       return marker;
     });
   return markers;
