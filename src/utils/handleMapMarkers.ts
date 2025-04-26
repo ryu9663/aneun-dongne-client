@@ -5,6 +5,7 @@ import { OTHER_MARKER_IMAGE } from '@/utils/constant';
 import { detectDevice } from '@/utils/detectDevice';
 
 const device = detectDevice();
+let openedInfoWindow: any = null;
 
 export const openInfoWindow = (map: any, marker: any) => {
   const infowindow = new window.kakao.maps.InfoWindow({
@@ -19,8 +20,6 @@ export const addZoomControler = (map: any) => {
 };
 
 export const makeMarkers = (map: any, places: PlaceType[]): MarkerType[] => {
-  let openedInfoWindow: any = null;
-
   const markers = places
     .map(({ title, mapy, mapx, firstimage, contentid }) => ({
       hoverBox: mapInfoWindowGenerator(title, firstimage || '/images/no-image.png'),
