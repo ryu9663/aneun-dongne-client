@@ -7,11 +7,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: (error, query) => {
+    onError: (_, query) => {
       if (query.meta && query.meta.errorMessage) {
         alert(query.meta.errorMessage);
       }
-      alert(error.message);
+      alert('관광공사 API에 문제가 있습니다.');
     }
   }),
   defaultOptions: {
