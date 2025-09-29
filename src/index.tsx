@@ -11,7 +11,7 @@ const queryClient = new QueryClient({
       if (query.meta && query.meta.errorMessage) {
         alert(query.meta.errorMessage);
       }
-      alert('관광공사 API에 문제가 있습니다.');
+      alert('국가정보자원관리원 화재로 인한 시스템 장애로 공공데이터포털 서비스를 이용하실 수 없습니다.');
     }
   }),
   defaultOptions: {
