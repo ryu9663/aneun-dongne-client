@@ -1,0 +1,5 @@
+interface:
+  display_name: "React Query Kakao Perf"
+  short_description: "Optimize read-only React + Kakao Map apps"
+  default_prompt: "Use $react-readonly-query-kakao-perf to analyze and optimize this React frontend's query, rerender, and Kakao Map performance."
+
