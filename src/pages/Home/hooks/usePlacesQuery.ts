@@ -23,9 +23,7 @@ export const usePlacesQuery = (position: PositionType) => {
   const query = useQuery({
     queryKey: queryKeys.PLACES(placeParams),
     queryFn: async () => await getPlaces(placeParams),
-    select: data => {
-      return data.response.body.items.item as PlaceType[] | undefined;
-    },
+    select: data => data.response.body.items.item as PlaceType[] | undefined,
     enabled: !!position
   });
   return query;
