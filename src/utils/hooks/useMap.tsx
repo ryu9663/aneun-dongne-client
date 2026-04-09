@@ -1,7 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { addZoomControler, removeMarkers, makeMarkers, removeImageTitle, onDragMap } from '@/utils/handleMapMarkers';
+import {
+  addZoomControler,
+  removeMarkers,
+  makeMarkers,
+  addDragEndListener,
+  removeImageTitle
+} from '@/utils/handleMapMarkers';
 import { MarkerType, PlaceType } from '@/pages/Home/types';
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useMemo, useRef } from 'react';
 import { PositionType } from './useCurrentPosition';
 import { useQueryParamsStore } from '@/pages/Home/hooks/useQueryParamsStore';
 
@@ -17,8 +23,8 @@ interface LatLng {
 const useMap = (mapRef: MutableRefObject<null>, { places, position }: MapParams) => {
   const kakao = window.kakao;
   const kakaoMap = useRef(null);
-  const [prevMarkers, setPrevMarkers] = useState<MarkerType[]>([]);
-  const [pickPoint, setPickPoint] = useQueryParamsStore(state => [state.pickPoint, state.setPickPoint]);
+  const prevMarkersRef = useRef<MarkerType[]>([]);
+  const setPickPoint = useQueryParamsStore(state => state.setPickPoint);
 
   const lat = position ? position.lat : 37.1597041;
   const lon = position ? position.lon : 128.213384;
@@ -35,20 +41,14 @@ const useMap = (mapRef: MutableRefObject<null>, { places, position }: MapParams)
       const container = mapRef.current;
       kakaoMap.current = new kakao.maps.Map(container, option);
       addZoomControler(kakaoMap.current);
+      addDragEndListener(kakaoMap.current, setPickPoint);
     }
   };
 
   const updateMarkers = () => {
-    prevMarkers && removeMarkers(prevMarkers);
+    prevMarkersRef.current.length && removeMarkers(prevMarkersRef.current);
     const newMarkers = makeMarkers(kakaoMap.current, places || []);
-    setPrevMarkers(newMarkers);
-  };
-
-  const handlePickPointChange = () => {
-    if (kakaoMap.current) {
-      prevMarkers && removeMarkers(prevMarkers);
-      onDragMap(kakaoMap.current, setPickPoint);
-    }
+    prevMarkersRef.current = newMarkers;
   };
 
   useEffect(() => {
@@ -57,13 +57,9 @@ const useMap = (mapRef: MutableRefObject<null>, { places, position }: MapParams)
 
   useEffect(() => {
     updateMarkers();
+    removeImageTitle();
   }, [places]);
 
-  useEffect(() => {
-    handlePickPointChange();
-  }, [pickPoint]);
-
-  removeImageTitle();
   return { map: kakaoMap };
 };
 

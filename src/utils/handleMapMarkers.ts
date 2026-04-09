@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { infoWindowGenerator, mapInfoWindowGenerator } from '@/utils/infoGenerator';
 import { MarkerType, PlaceType } from '@/pages/Home/types';
 import { PositionType } from './hooks/useCurrentPosition';
@@ -93,7 +94,7 @@ export const showSelectedPlaceInfoOnMap = (selectedPlace: PlaceType[], map: any)
   return markers[0];
 };
 
-export const removeMarkers = (markers: any[]) => {
+export const removeMarkers = (markers: MarkerType[]) => {
   //markerType필요함
 
   markers.forEach(marker => marker.setMap(null)); //setMap이 들어가있는지 타입검사 필요
@@ -120,7 +121,7 @@ export const removeInfo = (infowindow: { close: () => void }) => {
   infowindow.close();
 };
 
-export const onDragMap = (map: any, setPickPoint: (position?: PositionType) => void) => {
+export const addDragEndListener = (map: any, setPickPoint: (position?: PositionType) => void) => {
   new window.kakao.maps.event.addListener(map, 'dragend', () => {
     const latlng = map.getCenter();
 
