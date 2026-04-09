@@ -3,9 +3,17 @@ import { Home } from '@/pages/Home';
 import { HomeWithPosition } from '@/pages/Home/components/HomeWithPosition';
 import KakaoMap from '@/pages/Home/components/KakaoMap';
 import PlaceList from '@/pages/Home/components/PlaceList';
+import { usePlacesQuery } from '@/pages/Home/hooks/usePlacesQuery';
 import { PlaceType } from '@/pages/Home/types';
 import { renderAppWithRouterMatch } from '@/utils/test/renderWidthQuery';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+
+vi.mock('@/pages/Home/hooks/usePlacesQuery', () => ({
+  usePlacesQuery: vi.fn()
+}));
+
+const mockedUsePlacesQuery = vi.mocked(usePlacesQuery);
 
 describe('위치를 모를때', () => {
   test("위치추적 안되었을때 '현재 위치를 받아오고 있다는 문구' 노출", () => {
@@ -16,7 +24,12 @@ describe('위치를 모를때', () => {
 });
 
 describe('위치를 알 때 지도', () => {
-  test('위치를 지도페이지에 넣으면 처음에 로딩이 뜬다.', async () => {
+  test('위치를 지도페이지에 넣으면 처음에 로딩이 뜬다.', () => {
+    mockedUsePlacesQuery.mockReturnValue({
+      data: undefined,
+      isLoading: true
+    } as ReturnType<typeof usePlacesQuery>);
+
     render(
       renderAppWithRouterMatch(
         <HomeWithPosition
